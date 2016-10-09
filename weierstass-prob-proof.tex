@@ -1,0 +1,139 @@
+\title{Weierstraß Approximation theorem. Statement and probabilistic proof.}
+
+{
+    \setbeamertemplate{footline}{} 
+    \begin{frame}
+        \titlepage
+    \end{frame}
+    \addtocounter{framenumber}{-1}
+}
+
+\section{Approximation Theory}
+
+\begin{frame}
+    {Weierstraß Approximation Theorem}
+
+\begin{theorem}
+    A continuous function $f$, defined on a compact subset of $\bR^{m}$ can be
+    uniformly approximated by polynomials $\bR[x_1,\dots ,x_{m}]$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}
+    {One-dimensional case}
+    
+    For an $n\in \bN$, and $k\in \bN$ with $k\leq n$, we define the basis of
+    Bernstein polynomials
+    \begin{align*}
+        b(k,n,x) &= \binom{n}{k} x^{k} (1-x)^{n-k}.
+%        p_{n,k}(x) &= \binom{n}{k} x^{k} (1-x)^{n-k}. 
+    \end{align*}
+
+    For an $f \in C[0,1]$, define
+    \begin{align*}
+        f \mapsto B_{n}(f)(x) = \sum_{k=0}^{n} f\left(\frac{k}{n} \right) b(k,n,x), 
+    \end{align*}
+
+    The one-dimensional Weierstraß Approximation Theorem: 
+    \begin{theorem}
+        For any $f \in C[0,1]$, sequence of functions $B_{n}(f)$ converges to $f$,
+        uniformly in $x\in [0,1]$.
+    \end{theorem}
+
+\end{frame}
+
+\begin{frame}
+    {Connection to elementary probability theory}
+   
+    Let $X_{n,p} \sim \text{Bin}(n,p)$, $p\in [0,1]$. The probability mass function of $X$ is
+    \begin{equation*}
+        P(X_{n,p} = k) = b(k,n,p) = \binom{n}{k} p^{k} (1-p)^{n-k}. 
+    \end{equation*}
+
+    There is a proof of the above theorem based on 
+    \begin{theorem}[Chebyschev Inequality]
+        If $X$ has the second moment, then 
+        \begin{align*}
+            P ( | X - \mu  | \geq k \sqrt{ \operatorname{Var} X}  ) \leq 1/k^2. 
+        \end{align*}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    {A probabilistic proof. }
+    
+    Pick an $f \in C[0,1]$, and define 
+    \begin{align*}
+        F_{n,p} &= f(X_{n,p}/n) &
+        \E F_{n,p} &= \sum_{k=0}^{n} f\left( \frac{k}{n} \right) b(k,n,p).
+    \end{align*}
+
+    We show that, for all $\varepsilon>0$, there is an $N$, s.t.\
+    \begin{align*}
+        | f(p) - \E F_{n,p} | < \varepsilon,  
+    \end{align*}
+    if $n \geq N$, for all $p\in[0,1]$.
+\end{frame}
+
+\begin{frame}
+    {Growth estimates for $f$. }
+    
+    $f$ is uniformly continuous, 
+    \begin{align*}
+        \delta>0 &:& |x-y| &<\delta \impl |f(x)-f(y)| < \varepsilon/2,
+    \end{align*}
+    such that there exist
+    \begin{align*}
+        M > 0 &:& | f(x) - f(y) | &< 2M, \\
+        k &:& 2M/k^2 &< \varepsilon/2, \\
+        N &:& k/2\sqrt{N} &< \delta.
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    {The proof.}
+    
+    \begin{align*}
+        |f(p) - \E F_{n,p}| & \leq \sum_{j=0}^{n} 
+        \left| f(p)-f\left(\frac{j}{n}\right) \right| b(j,n,p)
+    \end{align*}
+    Splitting summands: 
+    \begin{align*}
+        \left| p - \frac{j}{n} \right| &< k/2\sqrt{n}<\delta 
+        \impl |f(p)-f(j/n)| < \varepsilon/2.
+    \end{align*}
+    Summing over $j$ with $|p - j/n | \geq k/2\sqrt{n}$:
+    \begin{align*}
+        \sum_{j} \left| f(p)-f\left(\frac{j}{n}\right) \right| b(j,n,p) & \leq 
+        2M \sum_{j} b(j,n,p).
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    {The proof. II.}
+    
+    $j$ is such that $| p - j/n | \geq k/2\sqrt{n}$:
+    \begin{align*}
+        \sum_{j} b(j,n,p) &= P \left( | p - J/n | \geq k/2\sqrt{n} \right),
+    \end{align*}
+    with $J \sim \text{Bin}(n,p)$. Call Chebysheff for help: 
+    \begin{align*}
+        P\left( \left|J - np \right| \geq \frac{k \sqrt{n}}{2} \right) &\leq
+        P\left( \left|J - np \right| \geq k\sqrt{n p(1-p)}  \right) \leq 1/k^2. \\
+        \sum_{j} \left| f(p)-f\left(\frac{j}{n}\right) \right| b(j,n,p) & \leq 
+        2M \sum_{j} b(j,n,p) \leq 2M/k^2 < \varepsilon/2.
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    {References}
+
+    \begin{itemize}
+        \item DeVore, R. A., Lorentz, G. G. (1993). Constructive Approximation. Springer. 
+    \end{itemize}
+
+
+\end{frame}
+
+
