@@ -1,0 +1,669 @@
+
+
+\begin{frame}
+    {Questions}
+    
+    \begin{enumerate}
+        \item Why is a jump measure of a L\'evy process a Poisson random measure?
+        \item Poisson random measures: What are the precise conditions on the
+            defining sequence $X_1, X_2, \cdots$?
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    {References}
+    
+    \nocite{applebaum2009}
+    \nocite{cont2004financial}
+    \nocite{sato1999}
+
+%    \printbibliography
+\end{frame}
+
+\section{Infinitely divisible distributions}
+
+\begin{frame}
+    {Convolution}
+    
+    \begin{definition}
+        Let $\mu_1$ and $\mu_2$ be (probability) measures on $\R^d$, then the
+        \key{convolution} $\mu = \mu_1 * \mu_2$ is defined as 
+        \begin{equation*}
+            \mu_1 * \mu_2 (B) = \iint_{\R^d \times \R^d} 1_{B}(x+y) \mu_1(dx) \mu_2(dy), \  
+            B \in \cB(\R^d). 
+        \end{equation*}
+    \end{definition}
+
+    \begin{enumerate}
+        \item $\mu_1 * \mu_2$ is a (probability) measure on $\R^d$. 
+        \item $\left( \cM(\R^d),* \right)$ is a \key{commutative monoid}.
+        \item If $\mu_1$ and $\mu_2$ are distributions of independent random
+            variables $X_1$ and $X_2$, then $X_1+X_2 \sim \mu_1 * \mu_2 $ and
+            for an $f\in \cB_b(\R^d)$
+            \begin{equation*}
+                \E f(X_1+X_2) = \int_{}^{} f(z) \mu_1 * \mu_2 (dz) = 
+                \iint f(x+y) \mu_1 (dx) \mu_2 (dy).
+            \end{equation*}
+%        \item $\mu_1 * \mu_2(B) = \int_{\R^d} \mu_1(B-y) \mu_2(dy)$. (by Fubini)
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    {Characteristic functions}
+
+    \begin{definition}
+        Let $\mu$ be a probability measure on $\R^d$. The \key{characteristic function}
+        $\hat \mu: \R^d \to \C$ of $\mu$ is defined as
+        \begin{equation*}
+            \hat \mu (u) = \int_{\R^d} \exp\left( i \langle u,z \rangle \right) \mu(dz).
+        \end{equation*}
+        The characteristic function $\hat\mu_\xi$ of a random variable $\xi$ is
+        the characteristic function of its law $\mu_\xi$.
+        \begin{equation*}
+            \hat \mu_\xi = \E \exp\left( i \langle u, \xi \rangle \right).
+        \end{equation*}
+    \end{definition}
+
+    \begin{enumerate}
+        \item If $\mu = \mu_1 * \mu_2$, then $\hat \mu(z) = \hat \mu_1(z)\ \hat \mu_2(z)$
+            for every $z\in\R^d$. 
+        \item $\phi(-u)= \overline{\phi(u)}$. 
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    {Properties of characteristic functions}
+   
+    \begin{enumerate}
+        \item Symmetrization and dual
+    \end{enumerate}
+
+
+    \begin{block}{Problems}
+        \begin{enumerate}
+            \item $\phi$ is uniformly continuous. (?)
+            \item 
+        \end{enumerate}
+    \end{block}
+
+
+\end{frame}
+
+\begin{frame}
+    {Bochner's theorem}
+    
+    \begin{theorem}[Bochner]
+        A function $\phi: \R^d \to \C$ is the characteristic function of 
+        a probability distribution on $\R^d$, if and only if
+        \begin{enumerate}
+            \item $ \left( \phi(u_i - u_j) \right)_{ij}$ is positive definite
+                for all $u_1, \cdots, u_d \in \R^d$.  
+            \item $\phi(0)=1$.
+            \item The map $u \to \phi(u)$ is continuous at the origin. 
+        \end{enumerate}
+        
+    \end{theorem}
+
+    Equivalent criteria. 
+    \begin{itemize}
+        \item Schönberg correspondence. TODO: Do we need this? 
+    \end{itemize}
+
+    Reference on characteristic functions: \cite{lukacs1970characteristic}
+\end{frame}
+
+
+\begin{frame}
+    {Weak convergence and characteristic funtions}
+    
+    \begin{definition}
+        A sequence of probability measures $\mu_n, n\in\bN$ \key{converges
+        weakly} to a probability measure $\mu$, written as $\mu_n\to\mu$, if
+        \begin{equation*}
+            \int f(x) \mu_n(dx) \to \int_{}^{} f(x) \mu(dx), \ n\to\infty
+        \end{equation*}
+        for all bounded continuous functions $f$ on $\R^d$.
+    \end{definition}
+
+    \begin{theorem}[L\'evy's continuity theorem]
+        Let $\mu,\mu_n, n\in\bN$ be probability measures.
+        \begin{enumerate}
+            \item $\mu_n \to \mu$ implies $\hat \mu_n(u) \to \hat \mu(u)$ uniformly
+                on compacts in $\R^d$.
+            \item $\hat\mu_n(z) \to \hat\mu(z)$ for all $z\in\R^d$, then $\mu_n\to\mu$.
+            \item If $\hat \mu_n(z)$ converges to a function $\psi(z)$ for 
+                every $z\in\R^d$ and $\psi$ is continuous at $0$, then
+                $\psi$ is a characteristic function of a random variable.
+        \end{enumerate}
+    \end{theorem}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+    {Infinite divisibility}
+
+    \begin{definition}
+        A random variable $X$ is \key{infinitely divisible}, if for all $n\in\bN$
+        there exist i.i.d.\ random variables $Y_1, \cdots, Y_n$ s.t.\
+        \begin{equation*}
+            X \sim Y_1 + \cdots + Y_n. 
+        \end{equation*}
+    \end{definition}
+
+    Equivalent characterisations are
+    \begin{itemize}
+        \item The law $\mu_X$ of $X$ has $n-th$ convolution root for all 
+            $n\in\bN$, i.e. 
+            \begin{equation*}
+                \mu_X = \mu_Y^{*^{n}}, 
+            \end{equation*}
+            where $\mu_Y$ denotes the law of a random variable $Y$.  
+        \item $\phi_X(u)$ has $n$-th root for all $n\in\bN$ that is
+            a characteristic function of a random variable. 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    {Examples of infinite divisible laws}
+
+    The family is quite large. The following distributions are infinitely divisible:
+
+    \begin{block}{Examples}
+        Stable distributions (all stable??) (special cases: Gaussian, Cauchy,
+        L\'evy), Gamma, exponential, geometric, Poisson, compound Poisson,
+        negative binomial, Dirac.
+    \end{block}
+
+    \begin{block}{Exceptions}
+        Dirac distribution is the only infinitely divisible distribution with
+        \key{bounded support}. 
+        So binomial or uniform distributions are not infinitely divisible.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    {L\'evy-Khinchine formula}
+    
+    Let $X$ be a L\'evy process with $\phi_{X_t}(u)= e^{t \eta(u)}$.
+    The L\'evy symbol is of the form
+    \begin{align*}
+        \eta(u) =& i \langle b,z \rangle 
+        -\frac{1}{2} \langle u, A u \rangle \\
+        &+ \int_{\R^d\setminus \left\{ 0 \right\}} 
+        \left\{ 
+        e^{i \langle u, y \rangle} -1 - i \langle u, y \rangle 1_{B}(y) 
+        \right\}
+        \nu(dy)
+    \end{align*}
+    where $b\in R^d$, $A\in \R^{d \times d}$ is positive definite and
+    symmetric, and $B=B_1(0)$ is the ball of radius $1$ centered at the origin. 
+   
+    The triple $(b,A, \nu)$ is called the \key{characteristics} of $X$. 
+\end{frame}
+
+
+\begin{frame}
+    {Complex Logarithm}
+    
+    Let $G$ be a connected and oped subset of $\bC$, and $\cH(G)$ is the
+    set of holomorphic functions on $G$. 
+
+    \begin{definition}
+        A holomorphic function $f \in\cH(G)$ is called a \key{complex logarithm}, if
+        $l$ satisfies one of the following:
+        \begin{enumerate}
+            \item $e^{f(z)}=z$ for all $z\in G$. 
+            \item $f'(w)=\frac{1}{w}$ and $e^{f(z_0)}=z_0$ for a $z_0 \in G$.
+        \end{enumerate}
+    \end{definition}
+
+    Recall the Euler's formula
+    \begin{equation*}
+        e^{z} = e^{x+iy}=e^x\left( \cos y + i \sin y \right).
+    \end{equation*}
+    We have $e^{z}=e^{z + 2\pi i}$ and $e^z$ is \key{bijective} on every stripe $S =
+    \left\{ z \in \bC : \Im z \in \left[ \phi, \phi + 2\pi i \right]  \right\}$.
+\end{frame}
+
+\begin{frame}
+    Let $f,g \in \cH(G)$ be complex logarithms. Then
+    \begin{equation*}
+        e^{f(z)-g(z)} = \frac{e^{f(z)}}{e^{g(z)}} = 1 = e^{2\pi i} 
+        \ \impl\  f(z) = g(z) +2\pi ik, k\in\bN.
+    \end{equation*}
+
+    If $w=f(z)$ and $w=x+iy$, then 
+    \begin{equation*}
+        e^{f(z)} = e^{x}\left( \cos y +i\sin y \right) = 
+        z = |z| \left( \cos\arg z + i \sin\arg z \right). 
+    \end{equation*}
+    Therefore
+    \begin{equation*}
+        f(z) = \log |z| + i \arg z
+    \end{equation*}
+
+    \key{Punch line}: $\log |z|$ is unique, but $i\arg z$ is not.
+\end{frame}
+
+
+
+\newcounter{LKProof}\stepcounter{LKProof}
+\begin{frame}
+    {The Khinchine's proof \Roman{LKProof}}
+    
+\end{frame}
+
+
+
+
+
+
+\section{An introduction to L\'evy processes}
+
+\begin{frame}
+    {L\'evy process. Definition.}
+    
+    A stochastic process $X = \left( X_t \right)_{t\geq 0}$ with values
+    in $\R^d$ is called a \key{L\'evy process}, if it satisfies the conditions:
+    \begin{enumerate}
+        \item Independent increments. 
+        \item $X_0 = 0$ a.s.
+        \item Stationary increments. The distribution of $X_{t+s}-X_s$ does
+            not depend on $s$. 
+        \item $X$ is stochastically continuous.
+    \end{enumerate}
+
+    Remarks.
+    \begin{itemize}
+        \item A process satisfying the conditions (1),(2), and (4) is
+            called an \key{additive process}. 
+        \item There is a \key{one-to-one correspondence} between laws of L\'evy processes and
+            infinitely divisible distributions.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    {Stochastic continuity}
+        
+    \begin{theorem}
+        For a stochastically continuous (L\'evy?) process $X$, the
+        characteristic function $\phi_{X_t}(u)$ of $X_t$ is continuous in $t$
+        for all $u\in\R^{d}$. 
+    \end{theorem}
+
+    Question. 
+
+    Any characteristic function $\phi(u)$ is uniformly continuous in $u\in\R^d$.
+    What are the conditions for $\phi_{X_t}(u)$ being jointly continuous
+    is $(t,u)$?
+\end{frame}
+
+
+\begin{frame}
+    {L\'evy symbol}
+   
+    We mention the simplest properties of a L\'evy process $X$.
+
+    \begin{itemize}
+        \item The distribution of $X_t$ is \key{infinitely divisible}. This 
+            follows from stationary independent increments property. 
+        \item $\phi_{X_t}$ solves the Cauchy problem
+            \begin{align*}
+                \phi_{X_t}(u)\phi_{X_s}(u) &= \phi_{X_{s+t}}(u), & 
+                \phi_{X_0}(u)&=1
+            \end{align*}
+            and therefore is of the form
+            \begin{equation*}
+                \phi_{X_t}(u) = \exp \left( t \eta(u) \right).
+            \end{equation*}
+            The function $\eta(u)$ is called the \key{L\'evy symbol},
+            or the \key{L\'evy exponent} of $X$. 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    {Poisson process}
+
+    \begin{definition}
+        \key{Poisson process} $N$ is a L\'evy process with values in $\bN_0$. 
+    \end{definition}
+
+    \begin{itemize}
+        \item There is an $\lambda>0$ such that
+            \begin{equation*}
+                P(N_t = n) = e^{-\lambda t} \frac{(\lambda t)^n}{n!}. 
+            \end{equation*}
+        \item The characteristic funktion of $N_t$ is
+            \begin{equation*}
+                \phi_{N_t}(u) = \exp \left( \lambda t \left( e^{iu}-1 \right) \right).  
+            \end{equation*}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    {Compound Poisson process}
+
+    \begin{definition}
+        A \key{Compound Poisson process} $X$ is a L\'evy process with piecewise
+        constant paths. 
+    \end{definition}
+
+    There exists a Poisson process $N$ and $Y_1, Y_2, \ldots$ i.i.d.\ with distribution 
+    $\nu$ on $\R^d$ with $\nu(\left\{ 0 \right\})=0$ such that
+    \begin{equation*}
+        X_t = \sum_{i=1}^{N_t} Y_i.
+    \end{equation*}
+
+    \begin{itemize}
+        \item Note the convention $\sum_{i=1}^{0} Y_i = 0$. 
+        \item The characteristic function of $X_t$ is
+            \begin{equation*}
+                \phi_{X_t}(u) = \exp \left( \lambda t \int_{\R^d} e^{iux}-1 \, \nu(dx)\right).
+            \end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    {Simulation of a compound Poisson process}
+    
+\end{frame}
+
+
+\begin{frame}
+    {Poisson random measure}
+    
+    Let $\left( \Omega, \cF, P \right)$ be a probability space, a measurable 
+    space $(E,\cE)$ with a $\sigma$-finite measure $\mu$. 
+
+    \begin{equation*}
+        M: \Omega \times \cE \to \bar\bN_0
+    \end{equation*}
+    is a \key{Poisson random measure} on $E$ with \key{intensity} $\mu$, if the
+    following holds.
+    \begin{enumerate}
+        \item $M(\omega, .)$ is a measure on $(E,\cE)$ for every $\omega\in\Omega$. 
+        \item $M(., B) \sim \text{Poiss}(\mu(B))$ for all $B\in\cE$. 
+        \item $B_1 \cap \cdots \cap B_n = \emptyset 
+            \ \impl \  M(B_1) \upmodels \cdots \upmodels M(B_n)$.
+    \end{enumerate}
+
+    \begin{equation*}
+        \tilde M(B) = M(B) - \mu(B), \quad B\in\cE,
+    \end{equation*}
+    is called \key{compensated Poisson random measure}.
+\end{frame}
+
+\begin{frame}
+    {Construction of the Poisson random measure}
+    
+    \begin{theorem}
+        For a given $(E,\cE, \mu)$ there exists a probability space $(\Omega,\cF,P)$ and
+        a Poisson random measure $M:\Omega \times \cE \to \bar \bN_0$ on $E$ 
+        with intensity $\mu$. 
+    \end{theorem}
+    
+    The proof in case $\mu(E)<\infty$ is easy.
+    \begin{enumerate}
+        \item Take $X_1, \cdots$ i.i.d.\ with distribution $\frac{\mu(.)}{\mu(E)}$ and
+            $Y \sim\text{Poiss}(\mu(E))$. 
+        \item Define $M(B)$ as the sum of Dirac measures
+            \begin{equation*}
+                M(B) = \sum_{j=1}^{Y} 1_{B}(X_j) = \sum_{j=1}^{Y} \delta_{X_j}.
+            \end{equation*}
+        \item TODO: construction for a general space $E$
+        \item TODO: Why is the formula
+            \begin{equation*}
+                M(A) = \sum_{n\geq 1}^{} 1_{A}(X_i)
+            \end{equation*}
+            valid?
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    {Integration w.r.t.\ a Poisson random measure}
+    
+\end{frame}
+
+
+\begin{frame}
+    {Jump measure}
+    
+    Let $X$ be stochastic process with c\`adl\`ag paths in $\R^d$.
+
+    \begin{enumerate}
+        \item $\left( T_n \right)_{n\in \bN}$ are jump times of $X$.
+        \item $\left( Y_n \right)_{n\in \bN}$ are corresponding jump heights. 
+    \end{enumerate}
+
+    Then the function
+    \begin{align*}
+        J_{X}\left( \omega, B \right) 
+        &= \sum_{n \geq 1}^{} \delta_{\left\{T_n(\omega), Y_n(\omega)\right\}}(B)
+    \end{align*}
+    with $\omega\in\Omega$ and $B \subset [0,T]\times \R^{d}\setminus \left\{ 0
+    \right\}$ is called the jump measure of $X$.
+    \begin{equation*}
+        J_X (B) 
+        = \sum_{s\in [0,t]} \delta_{ \left\{ t, \Delta X_t \right\}} (B) 
+    \end{equation*}
+    counts the number of jumps of $X$ on $[0,t]$ landing in $A$. 
+
+\end{frame}
+
+\begin{frame}
+    {Jump measure of a compound Poisson process}
+    
+    \begin{theorem}
+        Let $X$ be a compound Poisson process with parameter $\lambda>0$ and jump
+        distribution $\nu$. Then the jump measure $J_X$ of $X$ is a Poisson 
+        random measure with intensity $\lambda \nu(dx) dt$.
+    \end{theorem}
+
+    Proof.
+    \begin{enumerate}
+        \item $J_X$ takes values in $\bN$.
+        \item Calculation of the characteristic function yields
+            \begin{equation*}
+                J_X (B) \sim \text{Poiss} \left( \lambda \int_{B}^{} \nu(dx) ds \right).
+            \end{equation*}
+        \item The characteristic function $\left( J_X(B_1), \cdots, J_X(B_n)
+            \right)$ can be factored, yielding the independence of the
+            components $J_X(B_i)$, provided the sets $B_1, \cdots, B_n$ are
+            pairwise disjoint.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    {L\'evy measure}
+    
+    Let $X$ be a L\'evy process on $\R^d$. Define
+    \begin{align*}
+        N(t,A) &= J_X( [0,t] \times A) & \nu(A) &=  \E\, N(1, A)
+    \end{align*}
+    for an $A\in \R^d \setminus \left\{ 0 \right\}$.
+
+    \begin{enumerate}
+        \item $\nu$ is called the \key{L\'evy measure} of $X$. 
+        \item $\nu$ is a Radon measure on $\R^d \setminus \left\{ 0 \right\}$ satisfying
+            \begin{equation*}
+                \int_{R^d \setminus \left\{ 0 \right\} } 
+                    \left( x^2 \wedge 1 \right) \nu(dx) < \infty.
+            \end{equation*}
+        \item The jump measure $J_X$ of $X$ is a Poisson random measure with
+            intensity $\nu$.  
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    {L\'evy-It\^o decomposition}
+    
+    Let $X$ be a L\'evy process with L\'evy measure $\nu$. $X$ is a sum of
+    independent processes
+    \begin{equation*}
+        X_t = \gamma t + W_t + X_t^{b} + \lim_{\varepsilon\to 0} \tilde X^{\varepsilon}_{t}
+    \end{equation*}
+    with
+    \begin{enumerate}
+        \item $\left( \gamma t + W_t \right)_{t}$ is a Brownian motion with drift $\gamma \in \R^d$.
+        \item $X^b$ is a sum of big jumps
+            \begin{equation*}
+                X^{b}_t = \sum_{s\in [0,t]} \Delta X_s 1_{ \left\{ | \Delta X_s | \geq 1 \right\}  }.
+            \end{equation*}
+        \item $\lim_{\varepsilon\to 0}\tilde X^{\varepsilon}_t$ consists of compensated 
+            small jumps
+            \begin{align*}
+                \tilde X^{\varepsilon}_t = \int_{0}^{t} 
+                \int_{\varepsilon \leq |x| < 1} 
+                x \left\{ J_X(dx,ds) - \nu(dx) ds \right\}.
+            \end{align*}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    {L\'evy-Khinchine Formula}
+    
+\end{frame}
+
+
+\subsection{Subordinators}
+
+
+
+
+
+
+\subsection{Catalogue of L\'evy processes}
+
+
+\section{Markov processes and generators}
+
+\begin{frame}
+    {Convolution semigroups}
+    
+    A family of probability measures $G=\left( p_t \right)_{t\geq 0}$ with
+    $p_0=\delta_0$ is called a \key{convolution semigroup} if 
+    \begin{equation*}
+        p_s * p_t = p_{s+t}
+    \end{equation*}
+    holds for all $s,t \geq 0$. 
+
+    \begin{itemize}
+        \item $G$ is said to be \key{weakly continuous} if
+            \begin{equation*}
+                \lim_{t\downarrow s} \int f(y) p_t(dy) = \int f(y) p_s(dy)
+            \end{equation*}
+            for all test functions $f \in C_b(\R^d)$ and all $s \geq 0$. 
+    \end{itemize} 
+\end{frame}
+
+
+
+\section{Protter on L\'evy processes}
+
+\begin{frame}
+    \frametitle{Poisson process (Basic Definition)}
+   
+    An adapded counting process $N_t = \sum_{n\geq 1} 1_{ \left\{ t\geq T_n \right\} }$ 
+    is a Poisson process if it has
+    \begin{enumerate}
+        \item increments independent of the past, i.e. $N_t - N_s \upmodels \mathcal F_s$, and
+        \item stationary increments, i.e. $N_t-N_s \sim N_u - N_v$ if $t-s=u-v$.
+    \end{enumerate}
+
+    $N_t$ has the Poisson distribution
+    \begin{equation}
+        P\left(  N_t = n \right) = \frac{e^{-\lambda t }\left( \lambda t  \right)^n }{ n!}
+    \end{equation}
+    and hence $E \left\{ N_t \right\} = \Var N_t = \lambda t$.
+    \begin{enumerate}
+        \item Waiting times between jumps are independent 
+            $\operatorname{Exp} \left( \lambda \right)$ distributed.
+        \item Fourier transform of $N_t$ is 
+            $E \left[ \exp\left( iu N_t \right) \right] = 
+            \exp\left( \lambda t \left( e^{iu} -1 \right) \right)$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Basic facts about Levy processes}
+
+    \begin{enumerate}
+        \item Levy process has a unique c\`adl\`ag modification.
+        \item A Levy process with bounded jumps has finite moments of all orders.
+        \item Associated jump processes $J_t^{\Lambda_1}$ and $J_t^{\Lambda_1}$ are
+            independent for disjoint $\Lambda_1$ and $\Lambda_2$.
+    \end{enumerate}
+    
+\end{frame}
+
+\frame{\frametitle{A Levy process has right continouous filtration}
+The completed natural filtration of a Levy process $X$ is right continuous. 
+\begin{proof}
+\begin{enumerate}
+    \item Show for all $\left( u_1, \cdots, u_n  \right)$ and all $\left( s_1, \cdots, s_n \right)$ that
+        \begin{equation}
+            E \left\{ e^{i \left( u_1 X_1 + \ldots+ u_n X_n \right)} | \mathcal G_t \right\} = 
+            E \left\{ e^{i \left( u_1 X_1 + \ldots+ u_n X_n \right)} | \mathcal G_{t+} \right\}
+        \end{equation}
+        using that $M^u_v= \frac{e^{iuX_v}}{f_v(u)}$ with $f_v(u) = E\left\{ e^{iuX_v} \right\} $ is a martingale.
+    \item  For every bounded $Z\in \bigvee_{0\leq s< \infty} \mathcal F_s^0$  the above yields 
+        \begin{equation}
+            E \left\{ Z | \mathcal G_t \right\} = E \left\{ Z | \mathcal G_{t+} \right\}.
+        \end{equation}
+\end{enumerate}
+\end{proof}
+}
+
+
+\frame{\frametitle{Levy measure}
+For a Levy process $X$ define $N_t( \omega , \Lambda)= \sum_{0<s\geq t} 1_\Lambda ( \Delta X_s)$. 
+\begin{itemize}
+    \item The set function $\Lambda \mapsto N_t(\omega, \Lambda) $ is a $\sigma$-finite counting
+        measure on $\R \backslash \left\{ 0 \right\}$. 
+    \item The set function $\nu\left( \Lambda \right) = E \left\{ N_1\left(\cdot , \Lambda \right) \right\}$ is the Levy measure 
+        of $X$, also defined on $\R \backslash \left\{ 0 \right\}$.
+\end{itemize}
+}
+
+\frame{\frametitle{Levy process is decomposable}
+Let $X$ be a Levy process. Then there are Levy processes $M$ and $A$
+with $X=M+A$ such that
+\begin{enumerate}
+    \item $M$ is a martingales with bounded jumps, and
+    \item $A$ has paths of finite variation on compacts.
+\end{enumerate}
+}
+
+
+\begin{frame}
+    {The Levy-It\^o decomposition}
+    
+    Given a Levy process $X$ we may decompose it in the follwing way.
+    \begin{eqnarray*}
+        X_t &=&  X_+ - a \int_{0}^{t} X_{s-} ds + W_t + J_t \\
+        J_t &=& \int_{ |x| <1} x\left( N_t (dx) - t \mu(dx) \right) + bt +
+        \sum_{0 \geq s \geq t} 
+        \Delta X_s 1_{  \left\{ \left\| \Delta X_s \right\| \geq 1 \right\} }
+    \end{eqnarray*}
+
+    $J$ is quadratic pure jump process, $N_t$ is Levy measure and $\mu$ it's compensator. 
+
+    Reference: Papapantoleon.
+\end{frame}
+
+
+
+
+
+
+
+

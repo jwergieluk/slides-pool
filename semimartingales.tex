@@ -1,0 +1,697 @@
+
+
+\section{Stochastic Integration}
+
+
+\begin{frame}
+    {Sharp bracket process}
+    
+    Let $M \in \cM^2$ be a square integrable martingale. Then $M^2$ is
+    a submartingale, and we define $\langle M \rangle_t$ as a unique predictable
+    process satisfying
+    \begin{enumerate}
+        \item $\langle M \rangle_0 = 0$.
+        \item $M^2_t - \langle M \rangle_t$ is a martingale.
+    \end{enumerate}
+    The existence of $\langle  M \rangle$ follows directly from uniqueness of the
+    Doob-Mayer decomposition.
+
+    \vfill
+
+    Ref.: %\cite{Davis2005}
+\end{frame}
+
+
+\begin{frame}
+    {Quadratic variation of a semimartingale}
+
+    Quadratic variation is defined via
+    \begin{equation}
+        \left[ X,X \right] = X^2 -2 \int_{}^{} X_{-} dX
+    \end{equation}
+    and therefore it's existence relies on the existence of stochastic integral.
+    A list of simple properties:
+    \begin{enumerate}
+        \item $\left[ X,X \right]_t = X_0^t + \left[ X,X \right]^c_t +
+            \sum_{0<s\leq t} (\Delta X)^2$
+        \item $\left[ X,X \right]$ is adapted, c\`adl\`ag, increasing, and
+            therefore FV.
+        \item $\left[ X,Y \right]_t = X_0 Y_0 + \lim_{n\to \infty} \sum_{i}
+            \left( X^{T_{i+1}^n} - X^{T_{i}^n} \right)  \left( Y^{T_{i+1}^n} -
+            Y^{T_{i}^n} \right)$ where $\left( T^n \right)$ denotes a sequence
+            of partitions tending to unity and convergence is in \emph{ucp}.
+        \item Accordingly quadratic covariation process is $\left[ X,Y \right]=
+            XY - X_{-}\cdot Y-Y_{-}\cdot X$. The formula is also called
+            \emph{integration by parts}.
+    \end{enumerate}
+    
+%\todo{Where is $X_0 Y_0$?}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Special semimartingales}
+    
+    A semimartingale $X$ is said to be special if it has a 
+    decomposition 
+    \begin{equation}
+        X_t = X_0 + M_t + A_t
+    \end{equation}
+    where $M$ is a local martingale, $A$ is a predictable FV process, and $M_0=A_0=0$.
+
+    \begin{enumerate}
+        \item The above decomposition is unique.
+        \item A semimartingale with bounded jumps is special.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Completion and the usual hypotheses}
+    
+    A probability space $\left( \Omega, \cA, P \right)$ is said to be
+    \emph{complete} if all subsets of $P$-null sets are measurable, and have
+    measure zero.
+    \vfill
+
+    A filtered probability space $\left( \Omega, \cF, \left( \cF_t
+    \right)_{0\leq t < \infty}, P \right)$ is said to satisfy the \emph{usual
+    hypotheses}, if the followig holds.
+    \begin{enumerate}
+        \item The $\sigma$-algera $\cF$ is complete.
+        \item $\cF_0$ contains of the null sets of $\cF$. 
+        \item The filtration $\left( \cF_t \right)$ is right continuous. 
+    \end{enumerate}
+
+    \vfill
+    Bichteler mentions alternative natural hypotheses allowing to avoid
+    some problems with the Girsanov's theorem. 
+\end{frame}
+
+
+
+
+
+
+
+
+
+\frame{\frametitle{Stopping time $\sigma$-algebra}
+Let $T$ be a finite stopping time. Then $\mathcal F_T$ is the smalltest $\sigma$-algebra
+containing all c\`adl\`ag adapted processes sampled at $T$, i.e.
+\begin{equation}
+    \mathcal F_T = \sigma\left\{ X_T ; X \textsf{ c\`adl\`ag and adapted} \right\}
+\end{equation}
+Recall the definition of $\mathcal F_T$
+\begin{equation}
+    \mathcal F_T = 
+        \left\{ A\in \mathcal F : A \cap \left\{ T \leq t \right\} \in \mathcal F_t \ \ \forall t\geq0 \right\}
+\end{equation}
+}
+
+
+
+
+\frame{\frametitle{C\`adl\`ag modification of a supermartigale}
+Let $X$ be a supermartingale. The function $t\mapsto E { X_t}$ is right continuous iff 
+there exits a unique modification $Y$ of $X$ which is c\`adl\`ag. 
+
+\begin{proof}
+    Use Doob's Upcrossing Inequalities.
+\end{proof}
+}
+
+
+% Martingale essentials
+
+\frame{\frametitle{A Martingale Characterisation}
+A cadlag process is a martingale iff for every bounded stopping time
+$T$, holds
+\begin{enumerate}
+    \item $X_T$ is in $L^1$
+    \item $\E X_T = \E X_0$.
+\end{enumerate}
+
+\emph{Source:} Protter, Theorem 12 of Chapter 1?
+}
+
+
+\frame{\frametitle{Martingale Convergence Theorem}
+Let $X$ be a right continuous supermartingale with $\sup_{0\leq t<\infty} E \left\{ |X| \right\} <\infty$. 
+Then the following holds:
+\begin{enumerate}
+    \item $X$ converges: $Y=\lim_{t\to \infty} X_t$ a.s.~exists and $E \left\{ |Y| \right\} <\infty$. 
+    \item If X is closed by $Z$ then $Y$ also closes $X$ and $Y$ is minimal in the sense that $Y= E \left\{ Z | \bigvee_{0\leq t < \infty} \cF_t \right\}$. 
+\end{enumerate}
+}
+\frame{\frametitle{Doob's $L^p$ inequality}
+Let $X$ be a positive submartingale. For $p>1$ we have
+\begin{equation}
+    \| \sup_t X_t \|_{L^p} \leq \frac{p}{p-1} \sup_t \| X_t \|_{L^p}
+\end{equation}
+A useful specialization is Doob's maximal quadratic inequality
+\begin{equation}
+    E\{ ( \sup_t X_t)^2 \} \leq 4 E X_\infty^2.
+\end{equation}
+}
+\frame{\frametitle{Optional Sampling Theorem}
+\begin{block}{Bounded stopping times version}
+Let $X$ be a martingale and $S$ and $T$ are bounded stopping
+times with $S\leq T$ a.s., then
+\begin{enumerate}
+    \item $X_S$ and $X_T$ are integrable, and
+    \item $X_S = \E \left[ X_T | \cF_S \right]$ a.s. 
+\end{enumerate}
+\end{block}
+}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+    \frametitle{Finite variation processes}
+    
+    Let $A$ be a c\`adl\`ag process. $A$ is called a finite variation process (FV process)
+    if almost all of the paths of $A$ are of finite variation on each compact intervall
+    of $\R_+$.
+
+    For such a process we can define \textbf{total variation process}, 
+    \begin{equation}
+        |A|_t = \sup_{n \geq 1} \sum_{k=1}^{2^n} | A_{\frac{tk}{2^n}} - A_{\frac{t(k-1)}{2^n}} |.
+    \end{equation}
+    Then by definition we have $|A|_t< \infty$. 
+
+    If $F_s=F(s,\omega)$ is bounded and jointly measurable the by splitting $A$ into 
+    monotone components we can define $\omega$-by-$\omega$
+    \begin{equation}
+        (F \cdot A)_{t}(\omega) = \int_{0}^{t} F(s,\omega) d A_s(\omega)
+    \end{equation}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Finite variation processes II}
+
+    For the total variation process $|A|_{t}$ of a FV process $A$, $\int_{0}^{\infty} |d A_{s}|$
+    denotes total variation on $(0,\infty)$.
+
+    \begin{block}{FV process of integrable variation}
+        An FV process $A$ with $A_0=0$ is of \textbf{integrable variation} if the expected 
+        total variation is finite, i.e. 
+        $E\left\{ \int_{0}^{\infty} |d A_{s}| \right\} = E\left\{ |A|_{\infty} \right\}<\infty$.
+    \end{block}
+
+    \begin{block}{FV process of locally integrable variation}
+        $A$ is of \textbf{locally integrable variation} if there exists a sequence of stopping times
+        increasing to $\infty$ a.s. such that $E\left\{ |A|_{T_n} \right\}< \infty$, for each $n$.
+    \end{block}
+\end{frame}
+
+
+
+
+
+
+% Semimartingales 
+
+
+
+
+
+\section{Core theorems on stochastic integration}
+
+
+
+\frame{\frametitle{Stochastic exponential}
+For a given semimartingale $X$ with $X_0=0$, there exists a unique solution $Z$
+to the equation $Z_t = 1 + \int_{0+}^{t} Z_{s-} dX_s$ such that
+\begin{equation}
+    Z_t = \exp \left\{ X_t - \frac{1}{2} \left[ X,X \right]^c_t \right\} \prod_{0<s\leq t} \left( 1 + \Delta X_s \right) \exp \left\{ -\Delta X_s \right\} 
+\end{equation}
+
+Proof.
+\begin{enumerate}
+    \item Prove the convergence of the product by considering the logarithm of $S_t = \prod_{0<s\leq t} \left( 1 + \Delta X_s \right) \exp \left\{ -\Delta X_s \right\}  $. The same method yields $S_t$ is a FV process, and therefore $Z$ is a semimartingale.
+    \item To prove that $Z$ satisfies the equation use the It\^o formula and a bunch of tricks, like $Z_t= Z_{t-}(1 + \Delta X_t)$.
+\end{enumerate}
+
+}
+
+
+
+
+
+\frame{\frametitle{It\^o Formula}
+Let $X$ be a semimartingale and $f \in \mathcal C^2 $,
+then $f(X) $ is again a semimartingale, and
+\begin{eqnarray}
+    f(X_t) - f(X_0) &=&  \int_{0+}^{t} f'(X_{s-}) dX_s + \\
+    && \frac{1}{2} \int_{0+}^{t} f''(X_{s-}) d \left[ X,X \right]^c_s + \\
+    && \sum_{0<s\leq t} \left\{ f(X_s) -f(X_{s-}) - f'(X_{s-}) \Delta X_s \right\}
+\end{eqnarray}
+}
+
+
+
+\frame{\frametitle{Quadratic variation of a semimartingale}
+Quadratic variation is defined via
+\begin{equation}
+    \left[ X,X \right] = X^2 -2 \int_{}^{} X_{-} dX
+\end{equation}
+and therefore it's existence relies on the existence of stochastic integral.
+A list of simple properties:
+\begin{enumerate}
+    \item $\left[ X,X \right]_t = X_0^t + \left[ X,X \right]^c_t + \sum_{0<s\leq t} (\Delta X)^2$
+    \item $\left[ X,X \right]$ is adapted, cadlag, increasing, and therefore FV.
+    \item $\left[ X,Y \right]_t = X_0 Y_0 + \lim_{n\to \infty} \sum_{i} \left( X^{T_{i+1}^n} - X^{T_{i}^n} \right)  \left( Y^{T_{i+1}^n} - Y^{T_{i}^n} \right)$ where $\left( T^n \right)$ denotes a sequence of partitions tending to unity and convergence is in \emph{ucp}.
+    \item Accordingly quadratic covariation process is 
+        $\left[ X,Y \right]= XY - X_{-}\cdot Y-Y_{-}\cdot X$. The formula is also called integration
+        by parts.
+\end{enumerate}
+}
+
+
+\frame{\frametitle{Quadratic pure jump semimartingale}
+A semimartingale $X$ is called quadratic pure jump if $\left[ X,X \right]^c = 0$.
+\begin{enumerate}
+    \item Quadratic variation of a semimartingale decomposes as follows:
+        \begin{equation}
+            \left[ X,X \right] = \left[ X,X \right]^c + \sum_{0 \leq s \leq t} \left( \Delta X_s \right)^2 
+        \end{equation}
+    \item If $X$ is quadratic pure jump and $Y$ any semimartingale we have
+        \begin{equation}
+            \left[ X,Y \right]_t = X_0 Y_0 + \sum_{0< s \leq t } \Delta X_s \Delta Y_s
+        \end{equation}
+    \item If $X$ is adapted, cadlag FV process then it is quadratic pure jump.
+\end{enumerate}
+}
+
+
+
+\frame{\frametitle{Approximation with random partitions}
+A sequence $\sigma^n$ of stopping times $0\leq T^n_1 \leq \cdots \leq T^n_{k_n}< \infty$ is said to tend to
+unity if for $n\to\infty$ the following holds
+\begin{enumerate}
+    \item $\sup T^n_i \to\infty$ a.s. and 
+    \item $\sup | T^n_{i+1} - T^n_{i} | \to\infty$ a.s. .
+\end{enumerate}
+This construction is useful for approximating stochastic integrals
+\begin{equation}
+    \sum_{i} Y_{T^n_{i}} \left( X^{T^n_{i+1}} - X^{T^n_{i}} \right) \to^{ucp} \int_{0+}^{ t} Y_{-} dX_s
+\end{equation}
+}
+
+
+
+
+
+\begin{frame}
+    {ucp convergence}
+    
+    A sequence of stochastic processes $X^n$ converges to the limit $X$ uniformly 
+    on compacts in probability if
+    \begin{equation}
+        P\left(  \sup_{s\leq t} |X_s^n - X_s| > \epsilon \right) \to 0
+    \end{equation}
+    as $n \to \infty$ for each $t$ and $\epsilon>0$.
+
+    \begin{enumerate}
+        \item The above definition only makes sense if supremum is measurable. This is for
+            example the case for c\`adl\`ag processes.
+        \item The space of adapted c\`adl\`ag processes is complete under the ucp convergence.
+        \item A consequence of Doobs martingale inequalities is that $L_p$
+            convergence of martingales implies ucp convergence.
+    \end{enumerate}
+\end{frame}
+
+
+
+
+\frame{\frametitle{Exponential family of stochastic processes}
+A exponential family of stochastic processes is a filtered probability space
+$(\Omega, F, \mathbb F )$ together with a family of probability measures
+$(P_\theta)_{\theta\in \Theta}$ indexed by an open set $\Theta\in \R^d$ and
+dominated by a probability measure $Q$ such that the density process of
+$Z^\theta$ with respect to $P^\theta$ is 
+\begin{equation}
+    Z_t^\theta = \frac{d P_\theta|_{\mathcal F_t}}{ d P|_{\mathcal F_t}} 
+        = \exp \left(  \theta \cdot X_t -t \varphi(\theta) \right)
+    \label{}
+\end{equation}
+where $X_t$ is an adapted c\`adl\`ag $d$-dimensional process with $X_0=0$ and
+$\varphi (\theta)$ is some function on $\Theta$.
+
+Source: Jacod, Shiryaev.
+}
+
+
+
+
+
+\begin{frame}
+    {Random measures}
+   
+    A random measure $\mu$ on $\R_{\geq 0} \times E$ is a family of nonnegative measures 
+    \begin{equation}
+        \mu=\left( \mu\left( \omega, dt, dx \right) \right)_{\omega\in\Omega} 
+    \end{equation}
+    on $\left( \R_{\geq 0} \times E, \mathcal R_{\geq 0} \times \mathcal E \right)$.
+\end{frame}
+
+
+
+\begin{frame}
+    {Sharp bracket process}
+    
+    If $X$ and $Y$ are locally square integrable, then $\left[ X,Y \right]$ is
+    of locally integrable and we define $\langle X,Y \rangle$ as a compensator
+    of $\left[ X,Y \right]$.
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+    \frametitle{Doob-Meyer Decomposition}
+
+    A c\`adl\`ag supermartingale $Z$ with $Z_0=0$ is of
+    \emph{Class D} if the collection $\left\{ Z_T : T \textrm{is a finite valued stopping time} \right\}$ 
+    is uniformly integrable. 
+
+    \begin{block}{Case of Totally Inaccessible Jumps}
+        Let $Z$ be a supermartingale of Class D, and such that all jumps of $Z$
+        occur at totally inaccessible stopping times. $Z$ admits a unique decomposition
+        \begin{equation}
+            M_t=Z_t + A_t
+        \end{equation}
+        such that 
+        \begin{enumerate}
+            \item $A$ is a continuous, increasing, adapted process with $A_0=0$,
+            \item $M_t$ is a uniformly integrable martingale.
+        \end{enumerate}
+    \end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{$\sigma$-algebras}
+        
+    \begin{description}
+        \item[Predictable $\sigma$-algebra $\mathcal P$] on $\R_{>0} \times \Omega$ is the 
+            smallest $\sigma$-algebra on making all processes in $\mathbb L$ measurable. 
+            $\mathcal P$ also denotes processes that are \emph{predictably measurable}. 
+        \item[Optional $\sigma$-algebra $\mathcal O$] on $\R_{>0} \times \Omega$ is the smallest
+            $\sigma$-albebra making all c\`adl\`ag adapted processes measurable. 
+            $\mathcal O$ also denotes processes that are \emph optional.
+        \item[Progressive $\sigma$-algebra] on $\R_{>0} \times \Omega$ makes all progressive
+        processes measurable, i.e.\ all processes $X$ such that the mapping 
+        $(s, \omega)\to X(s,\omega)$ of $[0,t]\times \Omega$ into $\R$ is measurable
+        with respect to $\mathcal B([0,t]) \otimes \cF_t$ for all $t\in\R_{\geq 0}$.
+        \item[Measurable $\sigma$-albebra $\mathcal M$] on $\R_{>0} \times \Omega$ is 
+            $\mathcal M = \mathcal B\left( \R_{\geq 0} \right) \times \mathcal F$.
+    \end{description}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Predictable $\sigma$-algebra}
+    
+    Is generated by the sets of the form
+    \begin{equation}
+        \left\{ (s,t]\times A : 0\geq s>t, A\in\cF_s \right\} \cup 
+        \left\{ \left\{ 0 \right\} \times A : A\in\cF_t \right\}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Compensators}
+    
+    A process $A$ with locally integrable variation (=FV process), is 
+    locally a quasimartingale and by Rao's theorem there exists a unique decomposition
+    \begin{equation}
+        A = M + \tilde A
+    \end{equation}
+    where $\tilde A$ is a predictable FV process such that $M=A-\tilde A$ is a local martingale.
+\end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Special semimartingales}
+    
+    A semimartingale $X$ is said to be special if it has a 
+    decomposition 
+    \begin{equation}
+        X_t = X_0 + M_t + A_t
+        \label{specialSemimartingale}
+    \end{equation}
+    where $M$ is a local martingale, $A$ is a predictable FV process, and $M_0=A_0=0$.
+
+    \begin{enumerate}
+        \item The decomposition (\ref{specialSemimartingale}) is unique.
+        \item A semimartingale with bounded jumps is special.
+    \end{enumerate}
+\end{frame}
+
+
+
+\section{The Girsanov's theorem}
+
+\begin{frame}
+    \frametitle{A helper lemma for Girsanov theorem}
+    
+    Let $Q \sim P$, and define $Z_t = E\left\{ \frac{dQ}{dP} | \mathcal F_t \right\}$. An
+    adapted, c\`adl\`ag process $M$ is a $Q$ local martingale iff $MZ$ is a $P$ local martingale.
+
+    \begin{block}{Proof idea}
+    The proof relies on the generalized Bayes rule for conditional expectations, which under
+    the assumptions of the theorem states that
+    \begin{equation}
+        E_Q \left\{ M_t | \mathcal F_t \right\} = \frac{ E_P \left\{ M_t \frac{dQ}{dP} | \mathcal F_t \right\}}{ E_P \left\{ \frac{dQ}{dP} | \mathcal F_t \right\}  }.
+    \end{equation}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Bayes rule for conditional expectations}
+    
+    Assume $Q \sim P$, i.e. there exists a Radon-Nikodym derivative
+    $\frac{dQ}{dP}$ and one has $E_Q \left\{ X \right\} = E_P \left\{ X \frac{dQ}{dP} \right\}$ for
+    a r.v. $X$. Then the connection between conditional expectations is
+    \begin{equation}
+        E_Q \left\{ X | \mathcal F \right\} = \frac{ E_P \left\{ X \frac{dQ}{dP} | \mathcal F \right\}}{ E_P \left\{ \frac{dQ}{dP} | \mathcal F \right\}  }.
+        \label{}
+    \end{equation}
+
+    \begin{block}{Proof idea}
+        The Bayes rule may be proved using the basic definition of the conditional 
+        expectation only. Recall that $Y=E\left\{ X | \mathcal F \right\}$ is characterized
+        by $E\left\{ ZX \right\} = E\left\{ ZY \right\}$ for all $Z\in \mathcal F$.
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Girsanov transformations. Brownian motion case.}
+    
+    Let $\mu(\omega, t)$ be a bounded, adapted process on $[0,T]$, $B$ is a $P$-Brownian
+    motion, and $X$ is given by 
+    \begin{equation}
+        X_t = B_t + \int_{0}^{t} \mu(\omega, s) ds.
+    \end{equation}
+    Define the process $M$ by
+    \begin{equation}
+        M_t = \cE_t(X) = 
+        \exp\left(  - \int_{0}^{t} \mu dB_s - \frac{1}{2} \int_{0}^{t} \mu^2 ds \right)
+    \end{equation}
+    Then $M$ and $XM$ are $P$-martingales. Finally, if $Q$ denotes the measure on $C[0,T]$ 
+    defined by $Q(A) = E_P \left[ 1_A M_T \right]$, then $X$ is a $Q$-Brownian Motion on $[0,T]$.
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Girsanov-Meyer theorem}
+    
+    Let $Q$ and $P$ be equivalent. Let $X$ be a classical semimartingale under $P$
+    with decomposition $X=M+A$. Then $X$ is also a classical semimartingale under $Q$
+    and has a decomposition $X=L+C$, where
+    \begin{equation}
+        L_t = M_t - \int_{0}^{t} \frac{1}{Z_s} d\left[ Z,M \right]_s
+    \end{equation}
+    is a $Q$ local martingale, and $C=X-L$ is a $Q$ FV process.
+
+\end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Novikov's Criterion}
+    
+    Let $M$ be a continuous local martingale, and suppose that
+    \begin{equation}
+        E\left\{ e^{\frac{1}{2}\left[ M,M \right]_\infty} \right\} < \infty.
+    \end{equation}
+    Then $\mathcal{E}\left( M \right)$ is a uniformly integrable martingale.
+\end{frame}
+
+
+
+
+
+
+\section{General theory of integration}
+
+\begin{frame}
+    \frametitle{Special semimartingales}
+    
+    A semimartingale $X$ is said to be special if it has a 
+    decomposition 
+    \begin{equation}
+        X_t = X_0 + M_t + A_t
+        \label{specialSemimartingale}
+    \end{equation}
+    where $M$ is a local martingale, $A$ is a predictable FV process, and $M_0=A_0=0$.
+
+    \begin{enumerate}
+        \item The decomposition (\ref{specialSemimartingale}) is unique.
+        \item A semimartingale with bounded jumps is special.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{$\mathcal H^2$ Semimartingales}
+    
+    The space $\mathcal H^2$ consists of all special semimartingales $X=N+A$
+    with finite $\mathcal H^2$ norm defined by
+    \begin{equation}
+        \| X \|_{\mathcal H^2} = \| \left[ N, N \right]^{1/2} \|_{L^2} 
+            + \| \int_{0}^{\infty} |d A_s | \|_{L^2}.
+    \end{equation}
+    \begin{enumerate}
+        \item $\mathcal H^2$ is a Banach space.
+    \end{enumerate}
+
+    For $X\in \mathcal H^2$ and $H,J \in b\mathcal P$ define a distance function
+    \begin{equation*}
+        d_X\left( H,J \right) = 
+            \| \left( \int_{0}^{\infty} (H_s-J_s) d\left[ N,N \right]_s \right)^{1/2} \|_{L^2} +
+            \| \int_{0}^{\infty} |H_s-J_s| |d A_s| \|_{L^2}
+    \end{equation*}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Extending the class of integrands to $b\mathcal P$}
+
+    Outline of the results. 
+    \begin{itemize}
+        \item $\mathcal H^2$ is a Banach space.
+        \item $H\in b\mathbb L$ and $X\in \mathcal H^2 \impl H \cdot X \in \mathcal H^2$. 
+        \item $\int_{0}^{t} H^2_s d \left[ N,N \right]_s$ and $\int_{0}^{t} |H_s| |dA_s|$ are
+            Lebesgue integrals defined $\omega$-by-$\omega$.
+        \item The norm $d_X(H,J)$ is well defined.
+        \item For $X\in \mathcal H^2$ the space $b\mathbb L$ is dense in $b\mathcal P$ under $d_X\left( .,. \right)$.
+        \item $H^n\in b\mathbb L$ is Cauchy under $d_X$. Then $H^n \cdot X$ is Cauchy in $\mathcal H^2$. 
+        \item Approximations $H^n\in b\mathbb L$ are well-behaved.
+        \item Definition of stochastic integral as a limit in $\mathcal H^2$. 
+    \end{itemize}
+\end{frame}
+
+
+\frame{\begin{center}\Large{Properties of the stochastic interal}\end{center}}
+
+
+
+\begin{frame}
+    \frametitle{Uniform convergence. A helper lemmma.}
+     
+
+    For $X \in \mathcal H^2$ we have
+    \begin{equation}
+        E\left[ (\sup_t |X_t|)^2 \right] \leq 8 \| X \|^2_{\mathcal H^2}.
+        \label{}
+    \end{equation}
+
+    Therefore: If $X^n \to^{\mathcal H^2} X$ then $\lim_{n_k\to \infty} \left( X^{n_k} - X \right)^{*}$ for a subsequence $n_k$.
+
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Standard properties of stochstic integrals I}
+
+    Let $X,Y \in \mathcal H^2$, $H,K \in b\mathcal P$, and $T$ be a stopping time. 
+    \begin{itemize}
+        \item Distributive property \begin{eqnarray}
+                \left( H+K \right) \cdot X &=& H \cdot X + K \cdot X \\
+                H \cdot \left( X + Y \right) &=&  H \cdot X  + K \cdot X
+            \end{eqnarray}
+        \item Integral commules with stopping times
+            \begin{equation}
+                \left( H \cdot X \right)^T = H 1_{\left[ 0,T \right]} \cdot X = H \cdot \left( X^T \right)
+            \end{equation}
+        \item $\left( \Delta\left( H \cdot X \right) \right)_s$ 
+            is indistinguishable from $\left( H_s\left( \delta X_s \right) \right)_s$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Standard properties of stochstic integrals II}
+
+    Let $X,Y \in \mathcal H^2$, $H,K \in b\mathcal P$, and $T$ be a stopping time. 
+    \begin{itemize}
+        \item Associativity: $H \cdot \left( K \cdot X \right) = \left( HK \right) \cdot X$.
+        \item Quadratic variation of stochastic integrals
+            \begin{equation}
+                \left[ H \cdot X, K \cdot Y \right]_t = \int_{0}^{t} H_s K_s d\left[ X,Y \right]_s
+            \end{equation}
+    \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Properties holding prelocally}
+    
+    A property $\pi$ is said to hold prelocally for a process $X$ with 
+    $X_0=0$ if there are stopping times $T^n$ increasing to $\infty$ a.s.
+    such that $X^{T^n-}$ has property $\pi$ for each $n\geq 1$.
+
+    \begin{block}{Question}
+        
+        What does $X^{T^n}$ mean?
+
+    \end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Stochastic integrals with respect to arbitrary semimartingales}
+   
+        Every semimartingale $X$ with $X_0=0$ is prelocally in $\mathcal H^2$.
+\end{frame}
+
+

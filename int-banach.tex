@@ -1,0 +1,1022 @@
+
+\section{The Bochner Integral}
+\subsection{Basic definitions}
+
+
+\begin{frame}
+    \frametitle{Notation}
+
+    \begin{enumerate}
+        \item $E$ is a Banach space over $\R$. A norm of an element $x\in E$
+            will be denoted by $\| x \|$.
+        \item For $x\in E$ and $x^{*}\in E^{*}$ we use the notation $\langle x,x^* \rangle$
+            for the duality pairing.
+        \item $(A, \cA, \mu)$ is a measurable space with a non-negative 
+            $\sigma$-finite measure $\mu$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Measurability and more}
+    
+    Let $f: A\to E$  be a function and $\cB(E)$ denote the Borel-sets in $(E,\| \ \|)$. 
+    \begin{enumerate}
+        \item $f$ is \textbf{$\cA$-measurable}, if $f^{-1}(B) \in \cA$ for all
+            $B \in \cB(E)$. %This is of course the usual definition we know and love.
+        \item $f$ is a \textbf{$\cA$-simple} function, if it is $\cA$-measurable and
+            takes only finitely many values. 
+        \item $f$ is \textbf{$\cA$-strongly measurable}, if there is a sequence
+            $(f_n)$ of simple functions $f_n : A\to E$ converging pointwise to
+            $f$ on $A$.
+%        \item $f$ is \textbf{weakly measurable}, if the functions
+%            $\langle f, x^* \rangle : A\to \R, \omega \mapsto \langle f(\omega),x^* \rangle$
+%            for all fixed $x^{*}\in E^*$.
+        \item $f$ is \textbf{separably valued}, if $f$ takes values in a closed separable
+            subspace of $E$. 
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    We may relax the above notions of measurability, by considering them
+    outside of some $\mu$-zero set.
+
+    \begin{enumerate}
+        \item $f$ is \textbf{$\mu$-simple}, if it admits a decomposition 
+            $f=\sum_{i=1}^{n} x_i 1_{A_i}$ with $x_i \in E$ and $\mu(A_i)<\infty$.
+        \item  $f$ is \textbf{$\mu$-strongly measurable}, if there is a sequence $(f_n)$
+            of $\mu$-simple functions converging to $f$ $\mu$-almost everywhere.
+%        \item $f$ is weakly $\mu$-measurable, if \ldots
+        \item $f$ is \textbf{$\mu$-separably valued}, if $f$ takes values in a closed separable
+            subspace of $E$, except perhaps on a set $N$ with $\mu(N)=0$. 
+    \end{enumerate}
+
+    \begin{block}{Some simple observations.}
+        A $\cA$-strongly measurable function is $\mu$-almost everywhere equal to a 
+        $\mu$-strongly measurable function. 
+    \end{block}
+\end{frame}
+
+\subsection{Norming spaces}
+
+\begin{frame}
+    \frametitle{Norms of $E$ and $E^*$}
+    
+    For every $x\in E$ we have
+    \begin{equation*}
+        \| x^* \| = 
+        \sup_{\| x \| \leq 1} | \langle x,x^* \rangle |.
+    \end{equation*}
+    But also by virtue of the \textbf{Hahn-Banach separation theorem}
+    \begin{equation*}
+        \| x \| = 
+        \sup_{\| x^{*} \| \leq 1} | \langle x,x^* \rangle |
+    \end{equation*}
+
+    \begin{block}{Norming subspaces}
+        A subspace $F^* \subset E^*$ is called \em{norming} for $E$ if
+        \begin{equation*}
+            \| x \| = 
+            \sup_{\substack{ \| x^{*} \| \leq 1 \\ x^* \in F^* }} | \langle x,x^* \rangle |.
+        \end{equation*} 
+        holds for every $x\in E$. 
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Separable normed spaces}
+    
+    Let $E$ be a \textbf{separable} normed space, i.e.\ $E$ contains a
+    countable dense set. 
+
+    \begin{enumerate}
+        \item Every $\cA$-measurable function $f: A\to E$ is a pointwise limit of
+            simple functions.  This means, there is a sequence $(f_n:A\to E)$
+            of simple functions, such that $\lim_{n\to \infty} \|
+            f_n(\xi)-f(\xi) \| =0$ for every $\xi\in A$. 
+        \item All separable Banach spaces are isometrically isomorphic to
+            closed subspaces of $C[0, 1]$. 
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Polish spaces}
+    
+    \begin{block}{Definition}
+        A Polish space is a separable completely metrizable topological space,
+        i.e.\ a space homeomorphic to a complete separable metric space. 
+    \end{block}
+
+    Working with Polish spaces allows us to avoid some technical problems.
+    \begin{enumerate}
+        \item Separability allows to deal with uncountable collections
+            of null sets. 
+        \item All Polish spaces have cardinality $2^{\aleph_0}$. For a
+            measurable space $X$ with $| X | > 2^{\aleph_0}$, the diagonal
+            is not measurable in $X^2$. 
+        \item Existence of conditional law of Polish-valued random variables is
+            guaranteed. 
+        \item For random variables $X,Y$ taking values in a separable
+            metric space the event $X=Y$ is Borel-measurable.
+        \item Borel measures are inner regular, i.e.\ every Borel set $B$ 
+            contains a closed set $K$ s.t.\ $\mu (B \setminus K) < \varepsilon$
+            for arbitrary $\varepsilon>0$.
+    \end{enumerate}
+%    \url{http://mathoverflow.net/questions/20919/polish-spaces-in-probability}
+%    \url{http://stats.stackexchange.com/questions/2932/metric-spaces-and-the-support-of-a-random-variable}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Pettis measurability theorem}
+   
+    Let $E$ be a Banach space.
+
+    \begin{theorem}
+        Let $F^*$ be a norming subspace of $E^*$ and $f:A \to E$. The following
+        statements are equivalent:
+        \begin{enumerate}
+            \item $f$ is $\mu$-strongly measurable. 
+            \item $f$ is $\mu$-separably valued (\emph{essentially separably valued}),
+                and $\langle f,x^* \rangle: A\to \R$ is measurable for all $x^*
+                \in F^*$ (\emph{weakly measurable}).
+        \end{enumerate}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    
+    Some nice consequences.
+    
+    \begin{enumerate}
+        \item The $\mu$-almost everywhere limit of a sequence $(f_n)$ 
+            of $\mu$-strongly measurable is $\mu$-strongly measurable. 
+        \item $\mu$-strong measurability is preserved under continuous mappings.
+    \end{enumerate}
+
+    If $E$ is \emph{separable} then $f$ is $\cA$-measurable iff $$\langle x, y^*
+    \rangle: \Omega \to \R$$ are measurable for all $y^* \in E^*$.
+
+    This is because $\cB(E)$ is generated by the sets 
+    \begin{equation*}
+        \left\{ x \in E : \langle x,y^* \rangle \leq \alpha \right\}, 
+        \ y^* \in E^*, \ \alpha\in\R.
+    \end{equation*}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{The Bochner Integral}
+    
+    $f: A \to E$ is \textbf{$\mu$-Bochner integrable} if there exists a sequence 
+    $(f_n)_{n\geq 0}$ of $\mu$-simple functions such that
+    \begin{enumerate}
+        \item $\lim_{n\to \infty} f_n = f$ $\mu$-almost everywhere, 
+            i.e. $f$ is $\mu$-strongly measurable.
+        \item $lim_{n\to \infty} \int_A \| f_n - f  \| d \mu = 0$.
+    \end{enumerate}
+
+    For a $\mu$-simple function $f = \sum_{}^{} x_n 1_{A_n}$, we put 
+    \begin{equation*}
+        \int_{A}^{} f \ d\mu = \sum_{}^{} x_n \mu(A_n) \in E. 
+    \end{equation*}
+    
+    In case $f$ is $\mu$-Bochner integrable, we set 
+    \begin{equation*}
+        \int_{A}^{} f \ d\mu = \lim_{n\to \infty} \int_{A}^{} f_n d \mu.
+    \end{equation*}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Characterisation and first consequences}
+    
+    Let $f$ be $\mu$-strongly measurable. The following statements are equivalent:
+    \begin{enumerate}
+        \item $f$ is $\mu$-Bochner integrable. 
+        \item \begin{equation*}
+                \int_{A}^{} \| f \| d\mu < \infty.
+            \end{equation*}
+    \end{enumerate}
+
+    Add here: $A \int_{}^{} X dP = \int_{}^{} AX d P$ for a closed (or bounded) operator $A$. 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The Dominated Convergence Theorem}
+    
+    Assume that $f_n, f: A\to E$ and $g: A\to \R$ are $\mu$-Bochner integrable 
+    for all $n\in\bN$, and 
+    \begin{enumerate}
+        \item $\lim_{n\to \infty} f_n = f$ $\mu$-a.e., and 
+        \item $\| f_n  \| \leq |g|$ $\mu$-a.e.\ and for all $n\in\bN$.  
+    \end{enumerate} 
+    Then
+    \begin{enumerate}
+        \item $f$ is $\mu$-Bochner integrable, and 
+        \item \begin{equation*}
+                \lim_{n\to\infty} \int_{A}^{} f_n \ d\mu = \int_{A}^{} f \ d\mu.
+            \end{equation*}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The Bochner-Lebesgue spaces $L^p(A, E)$}
+
+    Fix a $1 \leq p < \infty$. 
+    
+    \begin{enumerate}
+        \item We identify $f: A\to E$ with equivalence classes of functions that
+            are equal $\mu$-almost everywhere. 
+        \item We put into $L^p(A,E)$ the classes of functions with
+            \begin{equation*}
+                \int_{A}^{} \| f \|^p d\mu < \infty
+            \end{equation*}
+        \item Endow this space with the norm
+            \begin{equation*}
+                \| f \|_{L^p(A,E)} = \left( \int_{A}^{} \| f \|^p d\mu \right)^{\frac{1}{p}}.
+            \end{equation*}
+    \end{enumerate}
+
+    $L^p(A,E)$ are Banach spaces and $\mu$-simple functions are dense in $L^p(A,E)$. 
+\end{frame}
+
+
+
+
+
+\section{Random variables in Banach spaces}
+
+
+\begin{frame}
+    \frametitle{Random variables in Banach spaces}
+    
+    Let $(\Omega, \cF, P)$ denote a probability space.
+
+    \begin{itemize}
+        \item $X$ is a \textbf{$E$-valued random variable} on $(\Omega, \cF, P)$ if $X$
+            $P$-strongly measurable. 
+    \end{itemize} 
+
+    The concepts known from classical probability theory can be defined in our
+    setting in almost the same manner.
+
+    \begin{itemize}
+        \item The \textbf{expectation} of $X$ is $\E X= \int_{\Omega}^{} X \ dP$, if $X$ 
+            is $P$-integrable.
+        \item $X$ induces a Borel measure on $E$ by $\mu_X(B) = P(X \in B)$. $\mu_X$
+            is called the \textbf{law of $X$}. 
+        \item We also have independence, modes of convergence\ldots
+    \end{itemize}
+
+    \todo{Add tightness and uniform tightness.  }
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Fourier transforms}
+   
+    The \textbf{Fourier transform} of a Borel probability measure $\mu$ is the function
+    $\hat \mu_X : E^*\to \bC$ defined by
+    \begin{equation*}
+        \hat \mu(x^*) = \int_{E}^{} \exp\left( -i \langle x , x^* \rangle \right) d \mu(x).
+    \end{equation*}
+    
+    The Fourier transform of a random variable $X$ is the Fourier transform of its 
+    law $\mu_X$: 
+    \begin{equation*}
+        \hat X(x^*) = \E \exp \left( -i \langle X, x^* \rangle \right) 
+        = \int_{E}^{} \exp\left( -i \langle x , x^* \rangle \right) d \mu(x)
+    \end{equation*}
+    
+    We have the following classical result. For two random variables $X$ and $Y$,
+    \begin{equation*}
+        \hat X (x^*) = \hat Y (x^*) \quad \forall x^* \in E^*
+    \end{equation*}
+    implies $\mu_X = \mu_Y$, i.e. $X$ and $Y$ have the same law.
+    
+    \todo{Add the idea of the proof.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The It\^o-Nisio theorem}
+    
+    Describes convergence of sums of independent symmetric random variables.
+    \begin{theorem}
+        For the random variables $S,X_n : \Omega\to E$, $n\geq 1$, define 
+        $S_n = \sum_{i=1}^{n} X_i$. If $(X_n)$ are independent and symmetric,
+        then the following statements are equivalent:
+        \begin{enumerate}
+            \item $\lim_{n\to\infty} \langle S_n, x^{*} \rangle = \langle S, x^{*} \rangle$ 
+                almost surely for all $x^* \in E^*$.
+            \item $\lim_{n\to\infty} \langle S_n, x^{*} \rangle = \langle S, x^{*} \rangle$ 
+                in probability for all $x^* \in E^*$.
+            \item $\lim_{n\to\infty} S_n = S$ almost surely.
+            \item $\lim_{n\to\infty} S_n = S$ in probability.
+        \end{enumerate}
+    \end{theorem}
+
+    A random variable is called \textbf{symmetric} if $\mu_{X}=\mu_{-X}$.
+
+    \todo{Add idea of proof.}
+    \todo{Mention the proof using Prokhorov theorem.}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Kahane contraction principle}
+    
+    Let $(X_n)_{n\geq 1}$ be a sequence of independent symmetric $E$-valued
+    random variables. Then for all $a_1, \cdots , a_N \in \R$ and $1\leq p < \infty$,
+    we have
+    \begin{equation*}
+        \E \| \sum_{n=1}^{N} a_n X_n \|^p  \leq 
+        \left( \max_{1\leq n \leq N} |a_n| \right)^p 
+        \E \| \sum_{n=1}^{N} X_n \|^p.
+    \end{equation*}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Kahane-Khintchine inequalities}
+   
+    All $L^{p}$-norms of an $E$-valued Gaussian sum are comparable. 
+
+    \begin{theorem}
+    Let $(\gamma_n)_{n \geq 1}$ be a Gaussian sequence and $(r_n)_{n \geq 1}$
+    a Rademacher sequence.
+
+    For $1 \leq p,q < \infty$ and $x_1, \cdots , x_N \in E$ we have
+    \begin{equation*}
+        \left( \E \|  \sum_{n=1}^{N} r_n x_n \|^p \right)^{\frac{1}{p}}
+        \leq K_{p,q}
+        \left( \E \| \sum_{n=1}^{N} r_n x_n \|^q \right)^{\frac{1}{q}}
+    \end{equation*}
+    and
+    \begin{equation*}
+        \left( \E \|  \sum_{n=1}^{N} \gamma_n x_n \|^p \right)^{\frac{1}{p}}
+        \leq K_{p,q}^{\gamma}
+        \left( \E \| \sum_{n=1}^{N} \gamma_n x_n \|^q \right)^{\frac{1}{q}}
+    \end{equation*}
+    where the Kahane-Khintchine constants $K_{p,q}$ and $K^{\gamma}_{p,q}$
+    depend only on $p$ and $q$. 
+    \end{theorem}
+
+%    \begin{block}{Idea of proof}
+%        Prove the result for sequences of Rademacher random variables.
+%        Generalize the result using a version of the central limit theorem.
+%    \end{block}
+\end{frame}
+
+
+\section{Gaussian random variables}
+\begin{frame}
+    \frametitle{Gaussian random variables}
+   
+    \begin{itemize}
+        \item We will call a real-valued random variable $X$ Gaussian, if 
+            \begin{equation*}
+                \E \exp\left( -i u X \right) = \exp \left( \frac{1}{2} u^2 \sigma^2 \right)
+            \end{equation*}
+            for a $\sigma\geq 0$, i.e.\ we assume $\E X=0$. 
+        \item An $E$-valued random variable $X$ is \textbf{Gaussian} if $
+            \langle X, x^* \rangle $ are real-valued Gaussian random variables
+            for all $x^* \in E^*$.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Fernique's theorem}
+
+    \begin{theorem}
+        For an $E$-valued Gaussian random variable $X$, there exists a constant
+        $\beta>0$, such that
+        \begin{equation*}
+            \E \exp \left( \beta \| X \|^2 \right) < \infty.
+        \end{equation*}
+    \end{theorem}
+
+    \todo{Idea of proof.}
+
+    As corollaries we get the following. 
+
+    \begin{enumerate}
+        \item $\E \| X \|^p < \infty$ for all $1 \leq p < \infty$. 
+        \item $\E X=0$. \textsf{Proof:} $X$ is $P$-integrable and 
+            $\langle \E X,x^* \rangle= \E \langle X,x^* \rangle=0$, and
+            therefore $\E X=0$ by virtue of the Hahn-Banach theorem.
+    \end{enumerate}
+   
+    Reference. 
+    
+    Fernique, Xavier (1970). \emph{Intégrabilité des vecteurs gaussiens.} C.\ R.\
+    Acad.\ Sci.\ Paris Sér.\ A-B 270: A1698–A1699. MR0266263 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The covariance operator}
+    
+    \begin{theorem}
+        A random variable $X$ is Gaussian, iff there exists a positive symmetric
+        operator $Q\in L(E^*, E)$ such that
+        \begin{equation*}
+            \E \exp \left( -i \langle X, x^* \rangle \right) = 
+            \exp\left( - \frac{1}{2} \langle Qx^*, x^* \rangle \right), \quad \forall x^*\in E^*.
+        \end{equation*}
+        The operator $Q$ is uniquely determined by the Fourier transform of $X$. 
+    \end{theorem}
+
+    Let $Q \in L(E^*, E)$ be a bounded operator.
+    \begin{itemize}
+        \item $Q$ is positive, if $\langle Qx^*, x^* \rangle \geq 0$ for all $x^* \in E^*$.
+        \item $Q$ is symmetric, if $\langle Qx^*, y^* \rangle = \langle Qy^*, x^* \rangle$
+            for all $x^*, y^* \in E^*$. 
+    \end{itemize}
+
+    The operator $Q$ in the above theorem is called the \textbf{covariance operator}
+    of $X$. 
+\end{frame}
+
+
+\begin{frame}
+    Proof. ($ \impl $)
+
+    \begin{enumerate}
+        \item $ \langle X, x^* \rangle X$ is integrable by Fernique's theorem, so
+            the operator
+            \begin{equation*}
+                Q x^* = \E \left[ \langle X, x^* \rangle X \right] 
+            \end{equation*}
+            is well defined. 
+        \item $Q$ is positive and symmetric. 
+        \item The variance of the Gaussian variable $\langle X, x^* \rangle$ is 
+            \begin{equation*}
+                \E \langle X,x^* \rangle^2 = 
+                \langle \E \left[ \langle X,x^* \rangle X \right], x^* \rangle = 
+                \langle Qx^*, x^* \rangle.
+            \end{equation*}
+            This follows with $\E \langle X,x^* \rangle = \langle  \E X, x^* \rangle$.
+        \item Hence the real-valued random variable $\langle X, x^* \rangle$
+            has the Fourier transform
+            \begin{equation*}
+                \E \exp \left( -i \langle X,x^* \rangle \right) = 
+                \exp \left( -\frac{1}{2} \langle Qx^*,x^* \rangle \right).
+            \end{equation*}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Properties of Gaussian random variables}
+   
+    Using the special form of the Fourier transform of Gaussian variables, we
+    may prove the following. 
+
+    \begin{itemize}
+        \item Gaussian random variables $X$ and $-X$ have the same Fourier transforms. 
+            Hence $X$ is symmetric. 
+        \item For an $x^*\in E^*$ the (real-valued) random variable 
+            $\langle X, x^* \rangle $ is Gaussian with variance 
+            $\E \langle X, x^* \rangle^2 = \langle Qx^*, x^* \rangle$. 
+        \item For $x^*, y^* \in E^*$ we have 
+            $\E \langle X,x^* \rangle \langle X, y^* \rangle = \langle Qx^*, y^* \rangle$ which 
+            motivates the name ``covariance operator''. 
+        \item A sum $\sum_{n=1}^{N} X_n$ of Gaussian variables $X_1, \cdots , X_N$ with
+            covariance operators $Q_1, \cdots , Q_N$ is Gaussian with covariance
+            operator $\sum_{n=1}^{N} Q_n$.  
+        \item For an operator $T\in L(E, F)$, the random variable $TX$ is Gaussian 
+            with covariance operator $TQT^*$. 
+            \todo{What is the dual of $L(E;F)$??  }
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Karhunen-Lo\`eve expansion}
+
+    Let $H_X = \textrm{span} \left\{ \langle X, x^* \rangle : x^* \in E^* \right\}$ 
+    be a closed subspace of $L^2(\Omega, \R)$. Define an operator $i_X : H_X \to E$ by
+    \begin{equation*}
+        i_X \langle X,x^* \rangle = \E \langle X, x^* \rangle X = Q x^*
+    \end{equation*}
+
+    \begin{theorem}
+        If $(\gamma_n)_{n \geq 1}$ is an orthonormal basis of $H_X$, then 
+        \begin{itemize}
+            \item $(\gamma_n)_{n \geq 1}$ is a sequence of independent Gaussian random variables. 
+            \item The convergence of the series
+                \begin{equation*}
+                    \sum_{n \geq 1}^{} \gamma_n i_X \gamma_n = X
+                \end{equation*}
+                holds almost surely and in $L^p$ for all $1 \leq p < \infty$.
+        \end{itemize} 
+    \end{theorem}
+
+    \todo{the proof is not at all clear.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Kahane-Khinchine inequality for Gaussian random variables}
+
+    As a corollary of the above theorem we get a generalized version of the
+    \begin{block}{Kahane-Khintchine inequality}
+        For a Gaussian random variable $X$ and $1 \leq p,q \leq \infty$ we have 
+        \begin{equation*}
+            \left( \E \| X \|^p \right)^\frac{1}{p} \leq 
+            K_{p,q} 
+            \left( \E \| X \|^q  \right)^\frac{1}{q}.
+        \end{equation*}
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Modes of convergence}
+    
+    Let $(X_n)_{n\geq 1}$ be a sequence $E$-valued Gaussian random variables. 
+    The following statements are equivalent: 
+    \begin{enumerate}
+        \item $(X_n)_{n \geq 1}$ converges in probability to a random variable $X$. 
+        \item $(X_n)_{n \geq 1}$ converges  in $L^p$ to a random variable $X$,
+            for some and therefore for all $1 \leq p < \infty$.
+    \end{enumerate}
+    In this case the limit $X$ is Gaussian.
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\section{$\gamma$-radonifying operators}
+\section{Stochastic Integrals in Banach Spaces}
+
+\begin{frame}
+%    {$\gamma$-radonifying operators}
+
+    {\LARGE{Stochastic Integrals in Banach Spaces}}\\[1.5cm]
+
+    References for this part.
+
+    \begin{itemize}
+        \item Jan van Neerven, \emph{{Stochastic Evolution Equations}}, 2008.
+        \item Jan van Neerven, \emph{{$\gamma$-Radonifying operators -- a survey}}, 2010.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    {Notation and basic definitions}
+
+    \begin{enumerate}
+        \item $H$ is a real Hilbert space and $E$ is a real Banach space. 
+        \item Gaussian random variables are assumed to be \emph{centered}.
+        \item A \textbf{Gaussian sequence} $(\gamma_n)_{n \in I}$ is a sequence of
+            real-valued standard Gaussian random variables.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Gaussian processes}
+    
+    Let $E$ denote a Banach space.
+
+    \begin{definition}
+        An $E$-valued stochastic process $(X_i)_{i\in I}$ is called Gaussian if 
+        for all finite collections $(i_1, \cdots, i_n) \subset I$ the $E^n$-valued 
+        random variable $(X_{i_1}, \cdots, X_{i_n})$ is Gaussian. 
+    \end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Isonormal processes}
+    
+    Let $H$ be a Hilbert space. 
+
+    \begin{block}{Definition }
+        $W: H \to L^2(\Omega, \R)$ is an $H$-isonormal process on $\Omega$ if
+        \begin{enumerate}
+            \item For all $h\in H$ the random variable $Wh$ is Gaussian. 
+            \item For all $g,h \in H$ we have $\E \left( W g \cdot W h \right)
+                = \langle g,h \rangle$. 
+        \end{enumerate}
+    \end{block}
+
+    Some properties.
+    \begin{enumerate}
+        \item The process $(W_h)_{h \in H}$ is \textbf{linear}, i.e.\ 
+            for $c_i \in \R$ and $h_i \in H$ 
+            \begin{equation*}
+                W \left( \sum_{i=1}^{n} c_{i} h_{i} \right) = 
+                \sum_{i=1}^{n} c_i W h_i.
+            \end{equation*}
+        \item $(W_h)_{h \in H}$ is a Gaussian process, because the $R^{N}$ 
+            valued random variables $(W h_1, \cdots ,W h_n)$ are Gaussian. 
+        \item $W h_1, \cdots , W h_n$ are independent ($\iff$ uncorrelated)
+            $\iff$ $h_1, \cdots , h_n$ are orthogonal.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Examples of isonormal processes}
+    
+    \begin{enumerate}
+        \item Fix $T>0$ and consider $H = L^2 ([0,T])$ and a one dimensional
+            Brownian Motion $(B_t)_{t\in [0,T]}$. The $H$-indexed family
+            \begin{equation*}
+                W h = \int_{0}^{T} h(t) d B_t
+            \end{equation*}
+            with $h\in H$ is an $H$-isonormal process.
+%        \item If $W$ is an $L^2(\R_{\geq 0})$-isonormal process then 
+%            \begin{equation*}
+%                B_t = W \left( 1_{[0,t]} \right)
+%            \end{equation*}
+%            defines a standard Brownian Motion.
+        \item Let $H$ be a separable Hilbert space, and $(\gamma_n)_{n \geq 1}$
+            a Gaussian sequence. Then
+            \begin{equation*}
+                W h = \sum_{i=1}^{\infty} \gamma_i \langle h, h_i \rangle
+            \end{equation*}
+            defines an $H$-isonormal process. 
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Connection to the Brownian Motion}
+    
+    Let $W$ be an $L^2([0,T], \bR)$-isonormal process. 
+
+    \begin{enumerate}
+        \item The process
+            \begin{equation*}
+                    (B_t)_{t\geq 0}=\left( W 1_{[0,t]} \right)_{t \geq 0}
+            \end{equation*}
+            is a one-dimensional Brownian Motion on $[0,T]$. To see this,
+            calculate $\E W 1_{[0,t]} \cdot{} W 1_{[0,s]}$.
+        \item Conversely a Brownian motion $B$ defines (by linearity) a
+            $L^2(R_{\geq 0})$-isonormal process.
+        \item Consider an orthonormal system $(h_n)_{n\geq 1}$ on $L^2(0,T)$.  
+            Then the above Brownian Motion has an expansion 
+            \begin{equation*}
+                B_t = W 1_{[0,t]} = 
+                \sum_{i=1}^{\infty} \gamma_i \langle 1_{[0,t]}, h_i \rangle 
+                = \sum_{i=1}^{\infty} \gamma_i \int_{0}^{t} h_i(s) ds
+            \end{equation*}
+    \end{enumerate} 
+\end{frame}
+
+
+\begin{frame}
+    {Tensor product}
+    
+    Let $H, E$ denote some vector spaces over a field $\bK$, and $e \in E$ $g \in H$. We
+    define an operator $h \otimes e : H \to E$ as follows:
+
+    \begin{enumerate}
+        \item For a function $h: H \to \bK$, we define
+            \begin{equation*}
+                h \otimes e (g) = h(g) e.
+            \end{equation*} 
+        \item Is $h \in H^*$, then
+            \begin{equation*}
+                h \otimes e (g) = \langle g, h^* \rangle e.
+            \end{equation*}
+        \item Is $H$ a Hilbert space and $h \in H$, then
+            \begin{equation*}
+                h \otimes e (g) = \langle g, h \rangle e. 
+            \end{equation*}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The cylindrical Brownian Motion}
+    
+    Let $H$ be a Hilbert space. 
+
+    \begin{block}{Definition}
+        An $L^2([0,T], H)$-isonormal process $W_H$ is called a
+        \textbf{$H$-cylindrical Brownian Motion}.  
+    \end{block}
+
+    For $t \in [0,T]$ and a fixed $h \in H$ define
+    \begin{equation*}
+        W_H(t)h = W_H \left( 1_{(0,t)} \otimes h \right).
+    \end{equation*}
+    Then the real-valued process $(W_H(t)h)_{t\geq 0}$ is a Brownian Motion.
+\end{frame}
+
+
+\begin{frame}
+    {$\gamma$-radonifying operators}
+    
+    \begin{enumerate}
+        \item Let $H \otimes E \subset \cL(H,E)$ denote all operators of
+            \textbf{finite rank}, i.e.\ operators of the form 
+            \begin{equation*}
+                \sum_{i=1}^{k} h_i \otimes x_i 
+            \end{equation*}
+            where $\left\{h_1, \cdots h_k \right\}$ is an orthonormal system in $H$. 
+        \item Define a $\gamma(H,E)$-norm for such operators as
+            \begin{equation*}
+                \left\|  \sum_{i=1}^{k} h_i \otimes x_i  \right\|_{\gamma(E,H)}^2 =
+                \E \left\| \sum_{i=1}^{k} \gamma_i x_i \right\|^{2}.
+            \end{equation*}
+            This norm is well-defined, i.e.\ independent of the representation. 
+        \item The space $\gamma(E,H)$ is the completition of $H \otimes E$ 
+            w.r.t.\ the $\gamma(H,E)$-norm.
+        \item The operators in $\gamma(E,H)$ are called \textbf{$\gamma$-radonifying}.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    {The space $\gamma(H,E)$}
+    
+    \begin{enumerate}
+        \item The $\gamma(H,E)$-norm is independent of the choice of an orthornormal system 
+            $\left( h_1, \cdots, h_k \right)$.
+        \item The space $\gamma(H,E)$ is a Banach space.
+        \item If $H$ is a separable Hilbert space and $E$ a Hilbert space then
+            $\gamma(H,E)$ contains all \textbf{Hilbert-Schmidt} operators, i.e.\
+            operators $T$ with 
+            \begin{equation*}
+                \sum_{n \geq 1}^{} \left\| Th_n \right\|^2 < \infty
+            \end{equation*}
+            for all orthonormal bases $\left( h_n \right)_{n \geq 1}$ of $H$.
+    \end{enumerate}
+\end{frame}
+
+
+%\begin{frame}
+%
+%    \begin{definition}
+%        A \textbf{Radon measure} $\mu$ on $\cB (E)$ has the following defining property.
+%        For a Borel set $B \in \cB(E)$ there exists a compact set $K \subset B$
+%        s.t.\ $\mu( B \setminus K) < \varepsilon$ for arbitrary
+%        $\varepsilon>0$.
+%    \end{definition}
+%
+%    \begin{enumerate}
+%        \item Laws of $E$-valued random variables are Radon, because random 
+%            variables are \textbf{tight}, i.e.\ for an $\varepsilon > 0$ there 
+%            exists a compact set $K$ s.t.\ $P( X \nin K)< \varepsilon$. 
+%    \end{enumerate}
+%\end{frame}
+
+
+
+
+\begin{frame}
+    {It\^o Isometry}
+    
+    Let $W: H \to L^2(\Omega, \R)$ denote a fixed $H$-isonormal process.
+    \begin{enumerate}
+        \item We extend the definition of $W$ to
+        \begin{equation*}
+            W: H \otimes E \to L^2(\Omega, E), \ W(h \otimes x) = W(h) \otimes x.
+        \end{equation*}
+        \item For an element $\sum_{i=1}^{k} h_i \otimes x_i$ we have
+            \begin{equation*}
+                \E \left\| W\left(\sum_{i=1}^{k} h_i \otimes x_i \right) \right\|^2 = 
+                \E \left\| \sum_{i=1}^{k} W(h_i) \otimes x_i  \right\|^2 = 
+                \E \left\| \sum_{i=1}^{k} \gamma_i x_i  \right\|^2.
+            \end{equation*}
+            As above the right hand side is independent of the representation of the element
+            $\sum_{i=1}^{k} h_i \otimes x_i$. 
+        \item \textbf{It\^o Isometry.} Every isonormal process $W: H \to L^2(\Omega, \R)$
+            induces an isometry from $\gamma(H,E)$ into $L^2(\Omega, E)$.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    {A characterization of $\gamma$-radonifying operators}
+    
+    \begin{theorem}
+        Let $H$ be separable and $R\in\cL(H,E)$. The follwing statements are equivalent:
+        \begin{enumerate}
+            \item $R$ is $\gamma$-radonifying, i.e.\ $R\in \gamma(H,E)$. 
+            \item The sequence
+                %\begin{equation*}
+                    $\sum_{n \geq 1}^{} \gamma_n R h_n = S $
+                %\end{equation*}
+                converges in $L^p(H,E)$ for all $1 \leq p < \infty$ and all
+                orthonormal bases $\left( h_n \right)_{n \geq 1}$.
+        \end{enumerate}
+        If this is the case, we have the following
+        \begin{enumerate}
+            \item $S$ converges almost surely.
+            \item $S$ is an $E$-valued Gaussian random variable with covariance 
+                operator $R R^{*}$.
+            \item It\^o isometry. 
+                $\left\| R \right\|^2_{\gamma(H,E)} = 
+                \E \left\| \sum_{n=1}^{k} \gamma_n R h_n  \right\|^2$.
+        \end{enumerate}
+    \end{theorem}
+\end{frame}
+
+
+\begin{frame}
+    {Gaussian covariance operators}
+    
+    Assume $Q\in L(E^*, E)$ and $R\in \cL(H,E)$ with $Q = R R^{*}$. The 
+    following statements are \emph{equivalent}:
+    \begin{enumerate}
+        \item $Q$ is a covariance operator of a $E$-valued Gaussian random variable $X$. 
+        \item $R \in \gamma(H,E)$, i.e.\ $R$ is $\gamma$-radonifying.
+    \end{enumerate}
+    With the above being true we have 
+    \begin{equation*}
+        \left\| R \right\|_{\gamma(H,E)}^2 = \E \left\| X\right\|^2.
+    \end{equation*}
+\end{frame}
+
+
+%\begin{frame}
+%    {$\gamma$-summing operators}
+%    
+%    For an $S: H \to E$ define a norm
+%    \begin{equation*}
+%        \| S \|_{\gamma^\infty_p(H,E)} = 
+%        \sup \left( \E \| \sum_{i=1}^{k} \gamma_i S h_i \|^p \right)^{\frac{1}{p}}.
+%    \end{equation*}
+%    where the supremum is taken over all finite orthonormal systems 
+%    $\left( h_1, \cdots, h_k \right)$ in $H$. 
+%
+%    Then let $\gamma^{\infty}_p(H,E) \subset \cL(H,E)$ contain all the operators
+%    $S$ such that $ \| S \|_{\gamma^{\infty}_p} < \infty$.
+%\end{frame}
+
+
+\begin{frame}
+    {Stochastic Integration}
+    
+    We will define a stochastic integral of a deterministic 
+    funciton $\Phi: [0,T] \to \cL(H,E)$ w.r.t.\ a $H$-cylindrical Brownian
+    motion.
+
+    \begin{enumerate}
+        \item Let $\Phi = 1_{(a,b)} \otimes ( h \otimes x)$ be a $\cL(H,E)$-valued
+            step function. Then define
+            \begin{equation*}
+                \int_{0}^{T}\Phi d W_H 
+                %= W_H( 1_{(a,b)} \otimes (h \otimes x) ) 
+                = W_H( 1_{(a,b)} \otimes h) \otimes x
+                = \left( W_H(b)h - W_H(a)h \right) \otimes x.
+            \end{equation*}
+        \item By linearity we extend this definition to finite rank operators 
+            valued step functions
+            \begin{equation*}
+                \Phi = \sum_{i=1}^{k} 1_{(t_{i-1}, t_{i})} U_i, \quad 
+                U_i = \sum_{j=1}^{k_i} h_{ji} \otimes x_{ji}
+            \end{equation*}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    {It\^o isometry}
+    
+    Let $\Phi$ be a  $\cL(H,E)$-valued step function. $\Phi$ \emph{uniquely} defines
+    an operator $R \in \cL ( L^2(0,T; H), E)$ by
+    \begin{equation*}
+        R_\Phi f = \int_{0}^{T} \Phi(t) f(t) dt, \quad f \in L^2(0,T; H).
+    \end{equation*}
+    If $\Phi$ is \emph{finite rank step funciton}, then
+    \begin{enumerate}
+        \item $R_\Phi$ is of finite rank and $R_\Phi \in\gamma(L^2(0,T;H),E)$. 
+        \item \begin{equation*}
+                \E \left\| \int_{0}^{T} \Phi d W_H  \right\|^2 = 
+                \left\| R_\Phi \right\|^2_{\gamma ( L^2(0,T; H),E  )}
+            \end{equation*}
+        \item We have thus an \emph{isometric embedding} 
+            \begin{equation*}
+                J_T^{W_H}: 
+                \gamma(L^2(0,T; H)) \to L^2(\Omega,E), \ 
+                R_\Phi \mapsto \int_{0}^{T} \Phi d W_H.
+            \end{equation*}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    {Integrable operators}
+
+    Question: How to recognize the operators $\Phi$ s.t.\ the associated
+    operator $R_\Phi$ is $\gamma$-radonifying?  
+    
+    \begin{definition}
+        $\Phi : (0,T) \to \cL(H,E)$ is stochastically integrable w.r.t.\ $W_H$, if
+        there exists a sequence of finite rank step operators 
+        $\Phi_n : (0,T) \to \cL(H,E)$ such that
+        \begin{enumerate}
+            \item The sequence \begin{equation*}
+                    \lim_{n\to \infty} \int_{0}^{T} \Phi_n d W_H 
+                \end{equation*}
+                converges in probability to an $E$-valued random variable $X$. 
+            \item $\lim_{n\to \infty} \Phi_n h = \Phi H$ in measure for all $h\in H$, i.e.
+                \begin{equation*}
+                    \lim_{n\to \infty} | 
+                    \left\{ t : \left\| \Phi_n (t) h - \Phi(t) h \right\|>r \right\}  | =0 
+                \end{equation*}
+                for all $r>0$ and all $h\in H$. 
+        \end{enumerate}
+        
+    \end{definition}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+    {A list of examples}
+    
+    \begin{enumerate}
+        \item Stochastic Burgers equation 
+        \item Parabolic SPDEs
+        \item Stochastic Wave equation
+        \item Heath-Jarrow-Morton equation
+        \item Equation from filtering theory: Zakai equation
+        \item Stochastic porous media equation
+        \item Stochastic Navier-Stokes equation
+        \item Stochastic reaction diffusion equation
+    \end{enumerate}
+
+
+\end{frame}
+
+
+
+\section{Variational approach}
+
+\begin{frame}
+    
+    {\LARGE{The Variational approach}}
+    \vfill
+
+    References for this part. 
+    \begin{enumerate}
+        \item \cite{prevot2007concise}
+%        \item \fullcite{Krylov1981}
+    \end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Nuclear Operators}
+    
+    Let $U$ and $H$ denote Hilbert spaces and $L(U,H)$ is the space of 
+    bounded linear operators from $U$ to $H$. 
+
+    \begin{enumerate}
+        \item An operator $T \in L(U,H)$ is called \textbf{nuclear} if there
+            are sequences $(a_n)$ in $H$ and $(b_n)$ in $U$ such that $Tx$ can
+            be written as
+            \begin{equation*}
+                Tx = \sum_{n\geq 1}^{} a_n \langle b_n, x \rangle
+            \end{equation*}
+            for all $x\in U$. The space of all nuclear operators in $L(U,H)$
+            will be denoted by $L_1(U,H)$. 
+        \item A $T \in L_1(U,H)$ is a \textbf{trace class} operator if $T$ is
+            symmertic, i.e.  $\langle Lv, v \rangle = \langle v, Lv \rangle$
+            $\forall v\in U$, and positive, i.e. $\langle Lv,v  \rangle \geq 0$
+            $\forall v\in U$. 
+        \item For a $T \in L(U)= L(U,H$ we define the trace of $T$ as
+            \begin{equation*}
+                \operatorname{tr} T = \sum_{n\geq 1 }^{} \langle T e_n, e_n \rangle.
+            \end{equation*}
+            $(e_n)_{n\geq 1}$ is a orthonormal basis of $U$. 
+    \end{enumerate}
+\end{frame}
+
+
+
+
+
+

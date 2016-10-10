@@ -1,0 +1,326 @@
+\section{Measure theory}
+
+
+\begin{frame}
+    {Caratheodory extension theorem}
+        
+    \begin{theorem}
+        Let $\mu: R \to \bR_{\geq 0}$ be a pre-measure on a ring $R$. Then $\mu$
+        can be extended to a measure $\tilde\mu$ on the $\sigma$-algebra $\sigma(R)$. 
+    \end{theorem}
+
+    \begin{enumerate}
+        \item A ring $R$ contains $\emptyset$, is closed under finite
+            intersections and finite differences, i.e.\ $A,B\in R \impl A\cap
+            B\in R, A\setminus B\in R$. 
+        \item Premeasure $\mu$ is defined as a positive, $\sigma$-additive set
+            function in a ring, with the property $\mu(\emptyset)=0$.
+    \end{enumerate}
+
+    Kallenberg has a version of this theorem for semi-rings. 
+\end{frame}
+
+
+\begin{frame}
+    {Topologies on product spaces}
+    
+    \begin{enumerate}
+        \item Product topology. 
+        \item Box topology.
+    \end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}
+    {Cylinder sets}
+    
+    \begin{enumerate}
+        \item Cylinder sets are clopen.
+    \end{enumerate}
+
+
+\end{frame}
+
+
+\subsection{Monotone Class Theorem}
+
+\begin{frame}
+    {Set systems: $\pi$-systems, $\lambda$-systems, $\sigma$-algebras}
+    
+    The following collections of subsets of some space $\Omega$ are of interest.
+
+    \begin{enumerate}
+        \item $\cC$ is called $\pi$-system, if $A,B\in \cC \impl A \cap B \in
+            \cC$, i.e., $\cC$ is closed under finite intersections.
+        \item $\cD$ is called $\lambda$-system (or Dynkin-system), if 
+            \begin{enumerate}
+                \item $\Omega\in\cD$,
+                \item $A,B\in\cD$ and $B \subset A \impl A \setminus B \in\cD$,
+                \item  and $A_1,A_2,\ldots \in\cD$ and $A_n \uparrow A \impl A
+                    \in \cD$.
+            \end{enumerate}
+        \item $\cA$ is called $\sigma$-algebra, if 
+            \begin{enumerate}
+                \item $A\in\cA \impl A^{c}\in\cA$, 
+                \item $A_1,A_2, \cdots \in\cA \impl \cup_{n\geq 1} A_n \in\cA$, and
+                \item $A_1,A_2, \cdots \in\cA \impl \cap_{n\geq 1} A_n \in\cA$.
+            \end{enumerate}
+    \end{enumerate}
+
+    \begin{theorem}
+        $\cA$ is a $\sigma$-algebra iff $\cA$ is both a $\pi$-system and a
+        $\lambda$-system.
+    \end{theorem}
+\end{frame}
+
+
+\begin{frame}
+    {Monotone class theorem}
+    
+    \begin{theorem}[Monotone class theorem]
+        Let $\cC$ be a $\pi$-system contained in a $\lambda$-system $\cD$. Then
+        $\sigma(\cC) \subset \cD$.
+    \end{theorem}
+
+    A corollary: If $\cC$ is a $\pi$-system, then $\sigma(\cC)=\lambda(\cC)$. 
+
+\end{frame}
+
+
+\begin{frame}
+    
+    \begin{proof}[Monotone Class Theorem]
+        \begin{enumerate}
+            \item It suffices to show that $\lambda(\cC)$ is a $\pi$-system, which implies that 
+                $\lambda(\cC)$ is a $\sigma$-algebra.
+
+            \item $\cD_2 = \left\{ B \in\lambda(\cC) : B \cap A \in
+                \lambda(\cC) \ \forall A \in \lambda (\cC) \right\}$ is the
+                largest subset of $\lambda(C)$ closed under finite
+                intersections. We show $\cD_2 = \lambda(\cC)$. 
+
+            \item $\cD_1 = \left\{ B \in\lambda(\cC) : B \cap A \in
+                \lambda(\cC) \ \forall A \in \cC \right\}$ is a
+                $\lambda$-system and $\cC \subset \cD_1$.  Therefore $\cD_1 =
+                \lambda(\cC)$.
+
+            \item We get $\cD_2 = \left\{ B \in\lambda(\cC) : B \cap A \in
+                \cD_1 \ \forall A \in \cD_1 \right\}$ is a $\lambda$-system and is
+                closed under finite intersections. Moreover $\cD_2 = \lambda(\cC)$.
+                So $\lambda(\cC)$ is closed under finite intersections, which
+                implies $\lambda(\cC) = \sigma(\cC)$.
+        \end{enumerate}
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    {Functional monotone class theorem}
+    
+    \begin{theorem}
+        Let $\cC$ be a $\pi$-system on $\Omega$, and $\cH$ a class of real-valued
+        functions on $\Omega$ satisfying:
+        \begin{enumerate}
+            \item $\cH$ is a vector space.
+            \item $1\in\cH$.
+            \item $1_{A}\in\cH$ for all $A\in\cC$.
+            \item If $\left( f_n \right) \subset \cH$ is an increasing sequence of non-negative
+                functions with $f = \sup_{n} f_n$, then $f\in\cH$.
+        \end{enumerate}
+        Under the above conditions $\cH$ contains all real-valued bounded $\sigma(\cC)$
+        measurable functions on $\Omega$.
+    \end{theorem}
+
+    \begin{proof}
+        TODO
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    {Families of measurable functions}
+        
+    Let $(E_i, \cE_i)_{i\in I}$ be a family of measurable spaces, and $\cC_i$
+    are $\pi$-systems generating $\sigma(\cC_i)=\cE_i$. Moreover, let $f_i :
+    \Omega \to \E_i$ be a family of $\cE_i$-measurable functions.  We define
+    \begin{equation*}
+        \cC = \left\{  \bigcap_{j\in J} f_j^{-1}(A_j) \,:\,  A_j \in \cC_j, \ J \subset I \text{ finite} \right\}.
+    \end{equation*}
+    Then
+    \begin{enumerate}
+        \item $\cC$ is a $\pi$-system, and
+        \item $\sigma(\cC) = \sigma\left( f_i : i\in I \right)$.
+    \end{enumerate}
+
+$\sigma\left( f_i : i\in I \right)$ is the smallest $\sigma$-algebra on
+$\Omega$ rendering all $f_i$ measurable, and is generated by the sets $\left\{
+f_i^{-1}(A_i) : A_i \in \cE_i \right\}$.
+\end{frame}
+
+
+\begin{frame}
+    {A version of the Monotone Class Theorem}
+
+    We specialise the MCT to the case of the $\pi$-system defined above.
+    \begin{theorem}
+        Let $\cH$ be a real vector space of functions, such that
+        \begin{enumerate}
+            \item $1\in\cH$. 
+            \item $\cH$ contains all functions of the form
+                \begin{equation*}
+                    1_{\bigcap_{j\in J} f_j^{-1}(A_j)} (x) = 
+                    \prod_{j\in J} 1_{A_j} \left( f_{j}(x) \right), \ A_j \in \cC_j, J \subset I \text{ finite}.
+                \end{equation*}
+            \item If $\left( f_n \right) \subset \cH$ is an increasing sequence of non-negative
+                functions with $f = \sup_{n} f_n$, then $f\in\cH$.
+        \end{enumerate}
+    \end{theorem}
+
+\end{frame}
+
+
+\begin{frame}
+    {Uniqueness of measures}
+
+    Fix a measurable space $\left( \Omega, \cE \right)$. 
+
+    \begin{theorem}[Uniqueness of finite measures]
+        Let $\mu$ and $\nu$ be finite measures on $(\Omega, \cE)$ agreeing 
+        on a $\pi$-system $\cC$ which generates $\sigma(\cC)=\cE$. If $\mu(\Omega)=\nu(\Omega)$, then
+        $\mu=\nu$.
+    \end{theorem}
+    \begin{proof}
+        $\cD = \left\{ A \in \cE : \mu(A)=\nu(A) \right\}$
+        is a $\lambda$-system containing $\cC$, and therefore $\cD=\sigma(\cC)=\cE$.
+    \end{proof}
+
+    A version for $\sigma$-finite measures.
+
+\end{frame}
+
+
+
+\begin{frame}
+    {$\sigma$-algebras and functional dependence}
+    
+    \begin{theorem}
+        Let $f: \Omega \to E$ be a $\cE$-measurable function. 
+        \begin{enumerate}
+            \item The set  
+                \begin{equation*}
+                    \cH = \left\{ h \circ f \,:\, h:\Omega\to\R \text{ bounded and measurable} \right\}
+                \end{equation*}
+                contains all real-valued $\sigma(f)$-measurable functions. 
+            \item For a $\phi: \Omega\to \bar\R$ there exist an $h\in\cE$ such that
+                \begin{equation*}
+                    \phi = h\circ f.
+                \end{equation*}
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        $\cH$ satisfies the conditions of the functional version of MCT. 
+    \end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+    {How does $\phi \in \sigma(f_i : i\in I)$ look like?}
+    
+    Essentially, $\phi$ is a function of at most \emph{countably} many $f_i$. 
+
+    \begin{theorem}
+        Let $\left\{ \cE_i : i\in I \right\}$ be a family of $\sigma$-algebras
+        on $\Omega$. Then for every $A \in \cE = \sigma( \cE_i : i\in I )$
+        there exists a countable set $J \subset I$ such that $A \in \sigma(
+        \cE_j : j \in J)$. 
+    \end{theorem}
+
+    In functional form this reads:
+    \begin{theorem}
+        Let $\left\{ f_i: \Omega\to\cE_i \right\}_{i\in I}$ be a family of
+        functions with $f_i\in\cE_i$, and $\phi\in \cE =\sigma\left( f_i : i\in
+        I \right)$ a numeric function on $\Omega$. Then there exists a
+        countable set $J \subset I$ such that 
+        \begin{enumerate}
+            \item $\phi \in \sigma\left( f_j : j\in J \right)$.
+
+            \item There is a $\bigotimes_{j\in J} \cE_j$-measurable function
+                $h: \prod_{j\in J} E_j \to \bar\R$ with $\phi = h \circ \left(
+                f_j \right)_{j\in J}$.
+        \end{enumerate}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    
+    \begin{proof}
+        TODO
+    \end{proof}
+
+\end{frame}
+
+
+
+
+
+
+
+\section{Probability theory}
+
+\begin{frame}
+    {Density transformation formulas}
+    
+    \begin{block}{One-dimensional version}
+        \begin{equation*}
+            p_{h(X)} (y) = \frac{p_X (h^{-1}(y))}{| h'(h^{-1}(y)) |} 1_B(h^{-1}(y))
+        \end{equation*}
+        
+    \end{block}
+
+    \begin{block}{Jacobi's Transformation Formula}
+        Let $X=(X_1, \cdots,X_n)$ have joint density $f$ and $g:\R^n \to \R^n$ be
+        continuously differentiable and injective, with non-vanishing Jacobian
+        $J_g(x)_{ij}= \frac{\partial g_i}{\partial x_j} (x)$.
+        Then $Y=g(X)$ has density 
+        \begin{equation*}
+        f_Y(y) = f_X(g^{-1}(y)) \ |\det J_{g^{-1}}(y) | \ 1_{g(\R^n)}(y).
+        \end{equation*}
+    \end{block}
+
+    \emph{Sources: } Jacod-Protter, Chapter 12
+\end{frame}
+
+
+
+
+\begin{frame}
+    {Workhorses of Probability Theory}
+    
+    \begin{block}{Monotone convergence theorem}
+        If $X_n$ are positive and increasing a.s.\ to $X$, then 
+        $\lim_{t\to \infty} E \left\{ X_n \right\} = E \left\{ X \right\}$.
+        ($E\left\{ X \right\} =\infty$ allowed)
+    \end{block}
+
+    \begin{block}{Fatou's lemma}
+        If $X_n$ satisfy $X_n \geq Y$ a.s.\ for some integrable $Y$, for all $n$,
+        then 
+        $E\left\{ \lim\inf_{n\to \infty} X_n \right\} 
+                \leq \lim\inf_{n\to \infty} E\left\{ X_n \right\}$.
+    \end{block}
+    
+    \begin{block}{Lebesgue's dominated convergence theorem}
+        If $X_n$ converge a.s.\ to $X$ and if $ |X_n| \geq Y$ a.s. for some integrable $Y$,
+        for all $n$, then $X_n$ and $X$ are integrable and 
+        $\lim_{n\to \infty} E\left\{ X_n \right\} = E\left\{ X \right\}$.
+    \end{block}
+\end{frame}
+
+
+
+
+
+

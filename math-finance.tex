@@ -1,0 +1,121 @@
+
+%% An introduction to one period models 
+
+
+\begin{frame}
+    {One-period market models}
+  
+    Fix a probability space $\left( \Omega, \cF, P \right)$ and consider a
+    market model consisting of $d+1$ assets at time points $t=0$ and $t=1$.  
+
+    The asset prices at $t=0$ are known real numbers 
+    $$\bar{\pi} = \left( \pi^{0}, \cdots, \pi^{d} \right) \in \R_{\geq 0}^{d+1}$$
+    and the prices at time $t=1$ are real-valued random variables
+    $$\bar{S} = \left( S^0, \cdots, S^{d} \right).$$
+
+    The zeroth asset has a special role, i.e. it is a \emph{risk-free asset} such
+    that $\pi^{0} =1$ and $S^=1+r$, $r>-1$. The number $r$ is called the 
+    risk-free rate.
+\end{frame}
+
+
+\begin{frame}
+    {Portfolios}
+    
+    An investment, at time $t=0$ can be specified via a portfolio 
+    $\xi \in \R^{d+1}$, where $\xi^{i}$ represents the number of 
+    bought shares of $i$-th asset.
+
+    The price of a portfolio at time $t=0$ is given by 
+    $\bar{\xi} \cdot{} \bar{\pi}$.
+\end{frame}
+
+
+\begin{frame}
+    {Arbitrage opportunities}
+    
+    An \emph{arbitrage opportunity} is a portfolio $\bar \xi \in \R^{d+1}$ with
+    \begin{enumerate}
+        \item $\bar \xi \ \bar \pi \leq 0$.
+        \item $\bar{\xi} \ \bar{S}  \geq 0$ $P$-a.s.
+        \item $P \left(  \bar{\xi} \ \bar{S} > 0   \right) >0$.
+    \end{enumerate}
+   
+    A market model admitting no arbitrage opportunities is called
+    \emph{arbitrage-free}. 
+
+    \begin{block}{Remarks.}
+        \begin{enumerate}
+            \item The measure $P$ enters the definition of the arbitrage
+                opportunity only through the null-sets of $P$, and thus $P$ may
+                be replaced by any $Q \approx P$.
+            \item In the above difinition, $\bar{\xi} \ \bar{\pi}\leq 0$
+                may be replaced by $\bar{\xi} \ \bar{\pi} =0$.
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+    {Risk-neutral measures and FTAP}
+    
+    A probability measure $P^{*}$ is called a \emph{risk-neutral measure}
+    or \emph{martingale measure} if the discounted prices are martingales, i.e.
+    \begin{equation}
+        \pi^{i} = E^{*} \left[ \frac{S^{i}}{1+r} \right], \ 
+        i \in \left\{ 1,\cdots,d \right\}.
+    \end{equation}
+
+    Let $\cP$ be the set of all equivalent martingale measures, i.e.\ 
+    \begin{equation}
+        \cP = \left\{ P^{*} \vb P^{*} \approx P, 
+        P^{*} \text{ is a martingale measure}  \right\}.
+    \end{equation}
+
+    \begin{theorem}[The Fundamendal Theorem of Asset Pricing]
+        A market model is arbitrage-free iff $\cP \neq \emptyset$. 
+
+        In this case the Radon-Nikodym density $\frac{d P^*}{d P}$ is bounded. 
+    \end{theorem}
+\end{frame}
+
+
+\begin{frame}
+    {More on risk-neutral measures}
+        
+    We introduce the $i$-th \emph{discounted net gain} 
+    \begin{equation}
+        Y^i = \frac{S^i}{1+r} - \pi^{i}.
+    \end{equation}
+
+    If $P^{*} \in \cP$ then $E^* \left[ Y^i \right] =0$.
+
+\end{frame}
+
+
+\begin{frame}
+    {Attainable payoffs and the Law of One Price} 
+    
+    The finite-dimensional vector space $\cV = \left\{ \bar{\xi} \ \bar{S} \vb
+    \bar{\xi} \in R^{d+1} \right\}$ is called the space of \emph{attainable payoffs}.
+    The operator $\pi (V) = E^{*} \left[ \frac{V}{1+r} \right]$ associated
+    with a measure $P^* \in \cP$ is linear and can be extended to the space $L^1
+    (P^*)$ of $P^*$-integrable random variables. This extension is not unique
+    in general. 
+
+    \begin{theorem}[The Law of One Price]
+        In an arbitrage-free market let $V\in \cV$ and
+        \begin{equation}
+            V = \bar{\xi} \ \bar{S} = \bar{\zeta} \ \bar{S} \quad P-\text{a.s.}
+        \end{equation}
+        Then $\bar{\xi} \ \bar{\pi} = \bar{\zeta} \ \bar{\pi}$.
+    \end{theorem}
+
+    Interpretation: The portfolios having the same payoffs must also the 
+    same price. 
+\end{frame}
+
+
+
+
+
